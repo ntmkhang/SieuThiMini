@@ -6,17 +6,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
             "projectName": "SieuThiMini_3960ba45",
-            "vmArgs": "--enable-native-access=ALL-UNNAMED  --module-path \"C:/Program Files/Java-fx/javafx-sdk-24/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--enable-native-access=javafx.graphics --module-path \"C:/Program Files/Java/javafx-sdk-24/lib\" --add-modules=javafx.controls,javafx.fxml"
         }
     ]
 }

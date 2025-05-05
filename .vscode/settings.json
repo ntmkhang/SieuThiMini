@@ -1,5 +1,4 @@
 {
-    "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
@@ -14,5 +13,8 @@
         "c:\\Program Files\\Java-fx\\javafx-sdk-24\\lib\\jdk.jsobject.jar",
         "c:\\Program Files\\Java-fx\\javafx-sdk-24\\lib\\jfx.incubator.input.jar",
         "c:\\Program Files\\Java-fx\\javafx-sdk-24\\lib\\jfx.incubator.richtext.jar"
+    ],
+    "java.project.sourcePaths": [
+        "src"
     ]
 }

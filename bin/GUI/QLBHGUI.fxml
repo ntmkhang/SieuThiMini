@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="1280.0" stylesheets="@../../../../GIt2/SieuThiMini/Assets/css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLBHController">
+   <children>
+      <TabPane prefHeight="1117.0" prefWidth="1728.0" stylesheets="@../../Assets/css/style.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Tạo hóa đơn">
+            <content>
+              <AnchorPane fx:id="sellForm" minHeight="0.0" minWidth="0.0" prefHeight="1079.0" prefWidth="1721.0">
+                     <children>
+                        <AnchorPane layoutX="9.0" layoutY="109.0" prefHeight="673.0" prefWidth="767.0" stylesheets="@../../Assets/css/style.css">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                           <children>
+                              <ScrollPane fx:id="sellScrollPane" hbarPolicy="NEVER" layoutX="16.0" layoutY="78.0" prefHeight="547.0" prefWidth="719.0" stylesheets="@../../Assets/css/style.css" vbarPolicy="NEVER">
+                                 <content>
+                                    <GridPane fx:id="sellGridPane" alignment="CENTER" prefHeight="178.0" prefWidth="164.0" styleClass="white-bg" stylesheets="@../../Assets/css/style.css">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                              <HBox alignment="CENTER" layoutX="86.0" layoutY="13.0" prefHeight="50.0" prefWidth="279.0" style="-fx-background-radius: 30px;" stylesheets="@../../Assets/css/style.css">
+                                 <children>
+                                    <TextField fx:id="sellSearchBar" prefHeight="37.0" prefWidth="177.0" promptText="Tìm kiếm" styleClass="white-bg" stylesheets="@../../Assets/css/style.css">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="sellSearchBTN" mnemonicParsing="false" onAction="#handleSearchBTN" prefHeight="34.0" prefWidth="87.0" text="Tìm kiếm" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="seller-button" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </HBox>
+                              <ComboBox fx:id="sellSearchCB" layoutX="416.0" layoutY="27.0" onAction="#handleSearchCB" prefHeight="30.0" prefWidth="118.0" styleClass="font-size14px" stylesheets="@../../Assets/css/style.css">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ComboBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="564.0" layoutY="14.0" prefHeight="766.0" prefWidth="469.0" stylesheets="@../../Assets/css/style.css" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <styleClass>
+                              <String fx:value="radius" />
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                           </styleClass>
+                           <children>
+                              <TableView fx:id="sellTableView" layoutX="21.0" layoutY="14.0" prefHeight="239.0" prefWidth="437.0" stylesheets="@../../Assets/css/style.css">
+                                <columns>
+                                  <TableColumn fx:id="sellColProduct" prefWidth="264.00000953674316" text="Tên sản phẩm" />
+                                  <TableColumn fx:id="sellColQuantity" prefWidth="62.0" text="Số lượng" />
+                                    <TableColumn fx:id="sellColPrice" prefWidth="109.33333333333331" text="Giá bán" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="25.0" layoutY="455.0" prefHeight="38.0" prefWidth="91.0" text="Tổng tiền:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellTongTien" layoutX="334.0" layoutY="456.0" prefHeight="38.0" prefWidth="140.0" text="0 VND">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="494.0" prefHeight="38.0" prefWidth="94.0" text="Tiền giảm:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="533.0" prefHeight="38.0" prefWidth="100.0" text="Thành tiền:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="571.0" prefHeight="38.0" prefWidth="132.0" text="Tiền khách trả:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="609.0" prefHeight="38.0" prefWidth="99.0" text="Tiền trả lại:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellTienGiam" layoutX="333.0" layoutY="494.0" prefHeight="38.0" prefWidth="140.0" text="0 VND">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellThanhTien" layoutX="333.0" layoutY="533.0" prefHeight="38.0" prefWidth="140.0" text="0 VND">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellTienTraLai" layoutX="334.0" layoutY="608.0" prefHeight="38.0" prefWidth="140.0" text="0 VND">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="sellThanhToanBTN" layoutX="102.0" layoutY="652.0" mnemonicParsing="false" onAction="#handleThanhToanBTN" prefHeight="51.0" prefWidth="288.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Thanh toán" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="sellXoaBTN" layoutX="40.0" layoutY="710.0" mnemonicParsing="false" onAction="#handleXoaBTN" prefHeight="51.0" prefWidth="117.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Xóa" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="sellInBTN" layoutX="323.0" layoutY="710.0" mnemonicParsing="false" onAction="#handleInBTN" prefHeight="51.0" prefWidth="117.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="In" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <TextField fx:id="sellTienKhachTra" layoutX="323.0" layoutY="567.0" prefHeight="30.0" prefWidth="140.0" promptText="0 VNĐ">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="sellSoDienThoai" layoutX="25.0" layoutY="264.0" prefHeight="44.0" prefWidth="239.0" promptText="Số điện thoại">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="sellSoDienThoaiBTN" layoutX="289.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleSoDienThoaiBTN" prefHeight="44.0" prefWidth="111.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Xác nhận" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label layoutX="24.0" layoutY="348.0" prefHeight="38.0" prefWidth="150.0" text="Tên khách hàng:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellNamelbl" layoutX="180.0" layoutY="348.0" prefHeight="38.0" prefWidth="284.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btn_themKhachHang" layoutX="420.0" layoutY="262.0" mnemonicParsing="false" onAction="#handlethemKhachHang" prefHeight="44.0" prefWidth="44.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="+" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label layoutX="24.0" layoutY="382.0" prefHeight="38.0" prefWidth="150.0" text="Điểm tích lũy:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sellPointlbl" layoutX="180.0" layoutY="382.0" prefHeight="38.0" prefWidth="284.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="417.0" prefHeight="38.0" prefWidth="132.0" text="Điểm áp dụng:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="sellDiemApDung" layoutX="323.0" layoutY="416.0" onAction="#handleDiemApDungEnter" prefHeight="24.0" prefWidth="140.0" promptText="0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                              <ComboBox fx:id="sellHinhThucCB" layoutX="70.0" layoutY="320.0" prefHeight="28.0" prefWidth="150.0" promptText="Chọn hình thức" styleClass="font-size14px" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="243.0" layoutY="21.0" prefHeight="61.0" prefWidth="532.0" stylesheets="@../../Assets/css/style.css">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="white-bg" />
+                              <String fx:value="radius" />
+                           </styleClass>
+                           <children>
+                              <HBox alignment="CENTER" layoutX="21.0" layoutY="1.0" prefHeight="49.0" prefWidth="489.0">
+                                 <children>
+                                    <Label fx:id="sellTenNV" prefHeight="31.0" prefWidth="319.0" text="Nguyễn Văn A">
+                                       <font>
+                                          <Font name="Arial" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="31.0" prefWidth="65.0" text="Mã số:">
+                                       <font>
+                                          <Font name="Arial" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="sellMaNV" prefHeight="31.0" prefWidth="56.0" text="1">
+                                       <font>
+                                          <Font name="Arial" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Danh sách hóa đơn">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="15.0" layoutY="13.0" prefHeight="1037.0" prefWidth="1697.0" stylesheets="@../../Assets/css/style.css">
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="radius" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <TableView fx:id="HoaDonTable" layoutX="15.0" layoutY="78.0" onMouseClicked="#handleHoaDonClicked" prefHeight="695.0" prefWidth="709.0">
+                                 <columns>
+                                    <TableColumn fx:id="colMaHD" prefWidth="53.33331489562988" text="Mã HD" />
+                                    <TableColumn fx:id="colNgayLap" prefWidth="62.666648864746094" text="Ngày lập" />
+                                    <TableColumn fx:id="colHinhThuc" minWidth="1.333343505859375" prefWidth="86.66665649414062" text="Hình thức" />
+                                    <TableColumn fx:id="colTongTien" prefWidth="66.0" text="Tổng tiền" />
+                                    <TableColumn fx:id="colTienGiam" prefWidth="72.00001525878906" text="Tiền giảm" />
+                                    <TableColumn fx:id="colThanhTien" prefWidth="79.33331298828125" text="Thành tiền" />
+                                    <TableColumn fx:id="colTienKhachDua" prefWidth="100.66659545898438" text="Tiền khách trả" />
+                                    <TableColumn fx:id="colTienTraLai" prefWidth="76.66668701171875" text="Tiền trả lại" />
+                                    <TableColumn fx:id="colMaNV" prefWidth="50.66668701171875" text="Mã NV" />
+                                    <TableColumn fx:id="colMaKH" prefWidth="59.33331298828125" text="Mã KH" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <DatePicker fx:id="startHDDatePicker" layoutX="532.0" layoutY="27.0" prefHeight="30.0" prefWidth="175.0" />
+                              <DatePicker fx:id="endHDDatePicker" layoutX="728.0" layoutY="26.0" prefHeight="30.0" prefWidth="175.0" />
+                              <ComboBox fx:id="sellSearchHoaDonCB" layoutX="326.0" layoutY="27.0" prefHeight="30.0" prefWidth="182.0" styleClass="font-size14px" stylesheets="@../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ComboBox>
+                              <HBox alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="50.0" prefWidth="284.0" style="-fx-background-radius: 30px;" stylesheets="@../../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                 <children>
+                                    <TextField fx:id="sellSearchHDBar" prefHeight="37.0" prefWidth="177.0" promptText="Nhập mã hóa đơn" styleClass="white-bg" stylesheets="@../../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="sellSearchHDBTN" mnemonicParsing="false" onAction="#handlleSearchLSHDBTN" prefHeight="34.0" prefWidth="87.0" text="Tìm kiếm" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="seller-button" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </HBox>
+                              <TableView fx:id="tbl_CTHoaDon" layoutX="731.0" layoutY="79.0" prefHeight="693.0" prefWidth="516.0">
+                                 <columns>
+                                    <TableColumn fx:id="colCTMaHD" prefWidth="46.0" text="Mã HD" />
+                                    <TableColumn fx:id="colCTMaSP" prefWidth="49.333251953125" text="Mã SP" />
+                                    <TableColumn fx:id="colCTTenSP" prefWidth="181.3333740234375" text="Tên sản phẩm " />
+                                    <TableColumn fx:id="colCTSoLuong" prefWidth="78.66668701171875" text="Số lượng" />
+                                    <TableColumn fx:id="colCTGiaBan" prefWidth="84.6666259765625" text="Giá bán " />
+                                    <TableColumn fx:id="colCTThanhTien" prefWidth="83.333251953125" text="Thành tiền" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Lịch sử tích điểm">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="15.0" layoutY="15.0" prefHeight="1034.0" prefWidth="1697.0" stylesheets="@../../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="radius" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <TableView fx:id="LichSuDiemTable" layoutX="15.0" layoutY="84.0" prefHeight="682.0" prefWidth="1237.0">
+                                 <columns>
+                                    <TableColumn fx:id="colLSMaGD" prefWidth="211.3333683013916" text="Mã giao dịch" />
+                                    <TableColumn fx:id="colLSMaKH" prefWidth="230.66664123535156" text="Mã khách hàng" />
+                                    <TableColumn fx:id="colLSTenKH" prefWidth="560.6667175292969" text="Tên khách hàng" />
+                                    <TableColumn fx:id="colLSMaHD" prefWidth="235.33343505859375" text="Mã hóa đơn" />
+                                    <TableColumn fx:id="colLSDiem" prefWidth="197.3333740234375" text="Điểm" />
+                                    <TableColumn fx:id="colLSNgayTichLuy" prefWidth="221.33333333333326" text="Ngày tích lũy" />
+                                    <TableColumn fx:id="colLSLoaiGD" prefWidth="221.33333333333326" text="Loại giao dịch" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="15.0" layoutY="15.0" prefHeight="50.0" prefWidth="279.0" style="-fx-background-radius: 30px;" stylesheets="@../../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                 <children>
+                                    <TextField fx:id="sellSearchLSBar" prefHeight="37.0" prefWidth="177.0" promptText="Nhập mã hóa đơn" styleClass="white-bg" stylesheets="@../../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="sellSearchLSBTN" mnemonicParsing="false" onAction="#handlleSearchLSTDBTN" prefHeight="34.0" prefWidth="87.0" text="Tìm kiếm" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="seller-button" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </HBox>
+                              <DatePicker fx:id="startLSDatePicker" layoutX="553.0" layoutY="25.0" prefHeight="30.0" prefWidth="175.0" />
+                              <DatePicker fx:id="endLSDatePicker" layoutX="796.0" layoutY="25.0" prefHeight="30.0" prefWidth="175.0" />
+                              <ComboBox fx:id="sellSearchTichDiemCB" layoutX="329.0" layoutY="25.0" prefHeight="30.0" prefWidth="182.0" styleClass="font-size14px" stylesheets="@../../../../GIt2/SieuThiMini/Assets/css/style.css">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ComboBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

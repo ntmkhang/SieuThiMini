@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="320.0" prefWidth="450.0" style="-fx-border-color: #949494;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.formThemKhachHangController">
+   <children>
+      <BorderPane layoutX="10.0" layoutY="90.0" prefHeight="56.0" prefWidth="430.0">
+         <center>
+            <TextField fx:id="sellInputTenKhachHang" prefHeight="30.0" prefWidth="440.0" style="-fx-background-color: transparent; -fx-border-color: #949494; -fx-border-width: 0px 0px 2px 0px;" BorderPane.alignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+         </center>
+         <top>
+            <Pane prefHeight="18.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="100.0" text="Tên khách hàng*" textFill="#aeaeae">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="warnTen" layoutX="100.0" prefHeight="18.0" prefWidth="331.0" textFill="#ff0000a3">
+                     <font>
+                        <Font name="Arial Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+      <BorderPane layoutX="10.0" layoutY="150.0" prefHeight="56.0" prefWidth="430.0">
+         <center>
+            <TextField fx:id="sellInputSoDienThoai" prefHeight="30.0" prefWidth="440.0" style="-fx-background-color: transparent; -fx-border-color: #949494; -fx-border-width: 0px 0px 2px 0px;" BorderPane.alignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+         </center>
+         <top>
+            <Pane prefHeight="18.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="100.0" text="Số điện thoại*" textFill="#aeaeae">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="warnSdt" layoutX="100.0" prefHeight="18.0" prefWidth="331.0" textFill="#ff0000a3">
+                     <font>
+                        <Font name="Arial Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+      <Label fx:id="labelTitle" layoutX="117.0" layoutY="26.0" prefHeight="27.0" prefWidth="217.0" text="Thêm khách hàng">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Pane fx:id="containSave" layoutX="287.0" layoutY="383.0" />
+      <Button fx:id="sellLuuBTN" layoutX="246.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleLuuBTN" prefHeight="39.0" prefWidth="83.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Lưu" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="sellHuyBTN" layoutX="124.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleHuyBTN" prefHeight="39.0" prefWidth="74.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Hủy" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>
