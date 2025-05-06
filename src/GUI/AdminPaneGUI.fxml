@@ -22,7 +22,7 @@
                   <Insets bottom="10.0" left="70.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="btnHome" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#obBtnHome" prefHeight="37.0" prefWidth="262.0" stylesheets="@../asset/css/style.css" text="Home">
+            <Button fx:id="btnHome" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="262.0" stylesheets="@../asset/css/style.css" text="Home">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,7 +43,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLSP" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#onBtnQLSanPham" prefHeight="37.0" prefWidth="262.0" stylesheets="@../asset/css/style.css" text="Quản Lý Sản Phẩm">
+            <Button fx:id="btnQLSP" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="262.0" stylesheets="@../asset/css/style.css" text="Quản Lý Sản Phẩm">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLPL" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#onBtnQLPhanLoai" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Quản Lý Phân Loại">
+            <Button fx:id="btnQLPL" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Quản Lý Phân Loại">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,7 +79,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLNV" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#onBtnQLNhanVien" prefHeight="37.0" prefWidth="263.0" stylesheets="@../asset/css/style.css" text="Quản Lý Nhân Viên">
+            <Button fx:id="btnQLNV" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="263.0" stylesheets="@../asset/css/style.css" text="Quản Lý Nhân Viên">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,7 +97,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLKH" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="269.0" mnemonicParsing="false" onAction="#onBtnQLKhachHang" prefHeight="37.0" prefWidth="263.0" stylesheets="@../asset/css/style.css" text="Quản Lý Khách Hàng">
+            <Button fx:id="btnQLKH" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="269.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="263.0" stylesheets="@../asset/css/style.css" text="Quản Lý Khách Hàng">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -115,7 +115,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLHD" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" onAction="#onBtnQLHoaDon" prefHeight="37.0" prefWidth="259.0" stylesheets="@../asset/css/style.css" text="Quản Lý Hoá Đơn">
+            <Button fx:id="btnQLHD" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="259.0" stylesheets="@../asset/css/style.css" text="Quản Lý Hoá Đơn">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnQLPN" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="232.0" mnemonicParsing="false" onAction="#onBtnQLPhieuNhap" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Quản Lý Phiếu Nhập">
+            <Button fx:id="btnQLPN" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="232.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Quản Lý Phiếu Nhập">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -151,7 +151,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnTK" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="417.0" mnemonicParsing="false" onAction="#onBtnThongKe" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Thống Kê">
+            <Button fx:id="btnTK" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="417.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="256.0" stylesheets="@../asset/css/style.css" text="Thống Kê">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -189,6 +189,6 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="254.0" prefHeight="557.0" prefWidth="812.0" stylesheets="@../asset/css/style.css" />
+      <StackPane fx:id="contentPane" layoutX="254.0" prefHeight="557.0" prefWidth="812.0" stylesheets="@../asset/css/style.css" />
    </children>
 </AnchorPane>
