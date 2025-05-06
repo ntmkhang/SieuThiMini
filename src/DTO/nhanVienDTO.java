@@ -1,31 +1,22 @@
 package DTO;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public class nhanVienDTO {
+public class NhanVienDTO {
     private int maNV;
     private String tenNV;
-    private boolean gioiTinh;
-    private Date ngaySinh;
+    private String gioiTinh;
+    private LocalDate ngaySinh;
     private String soDienThoai;
     private String email;
     private String diaChi;
     private int maChucVu;
+    private boolean isDeleted;
 
-    public nhanVienDTO(int maNV, String tenNV, boolean gioiTinh, Date ngaySinh, String soDienThoai, String email, String diaChi, int maChucVu) {
-        this.maNV = maNV;
-        this.tenNV = tenNV;
-        this.gioiTinh = gioiTinh;
-        this.ngaySinh = ngaySinh;
-        this.soDienThoai = soDienThoai;
-        this.email = email;
-        this.diaChi = diaChi;
-        this.maChucVu = maChucVu;
-    }
+    // Constructor mặc định
+    public NhanVienDTO() {}
 
-    public nhanVienDTO() {
-    }
-
+    // Getter và Setter
     public int getMaNV() {
         return maNV;
     }
@@ -42,19 +33,19 @@ public class nhanVienDTO {
         this.tenNV = tenNV;
     }
 
-    public boolean isGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public Date getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -90,5 +81,11 @@ public class nhanVienDTO {
         this.maChucVu = maChucVu;
     }
 
-    
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }

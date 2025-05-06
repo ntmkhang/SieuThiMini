@@ -1,47 +1,25 @@
 package BUS;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
-import DAO.hoaDonDAO;
-import DTO.CThoaDonDTO;
-import DTO.hoaDonDTO;
+import DAO.HoaDonDAO;
+import DTO.CTHoaDonDTO;
+import DTO.HoaDonDTO;
 
-public class hoaDonBUS {
-    private hoaDonDAO hoaDonDAO;
+public class HoaDonBUS {
+    private HoaDonDAO _hoaDonDao =new HoaDonDAO();
 
-    public hoaDonBUS(){
-        hoaDonDAO = new hoaDonDAO();
+    public ArrayList<HoaDonDTO> getALLHD(){
+        return (ArrayList<HoaDonDTO>) _hoaDonDao.getAllHoaDon();
     }
 
-    public ArrayList<hoaDonDTO> getAllHoaDon (){
-        return hoaDonDAO.getAllHoaDon();
+    public List<CTHoaDonDTO> getALLSanPhamByID(int maHD){
+        return _hoaDonDao.getCTHoaDonsByMaHD(maHD);
     }
 
-    public boolean addHoaDon (hoaDonDTO hoaDon){
-        return hoaDonDAO.themHoaDon(hoaDon);
-    }
-
-    public int getMaHD (){
-        return hoaDonDAO.getMaHD();
-    }
-
-    public hoaDonDTO getHoaDonbyMaHD (int maHD){
-        return hoaDonDAO.getHoaDonbyMaHD(maHD);
-    }
-
-    public ArrayList<hoaDonDTO> searchHoaDon (int maHD, int maKH, java.sql.Date startDate, java.sql.Date endDate){
-        return hoaDonDAO.searchHoaDon(maHD, maKH, startDate, endDate);
-    }
-
-    public ArrayList<CThoaDonDTO> getAllCTHoaDon (){
-        return hoaDonDAO.getAllCThoaDon();
-    }
-
-    public ArrayList<CThoaDonDTO> getCThoaDonbyMaHD (int maHD){
-        return hoaDonDAO.getCThoaDonbyMaHD(maHD);
-    }
-
-    public boolean addCThoaDon (CThoaDonDTO cthd){
-        return hoaDonDAO.themCThoaDon(cthd);
+      public List<HoaDonDTO> searchHoaDons(String idText, LocalDate selectedDate) {
+        return _hoaDonDao.searchHoaDonsByIdAndDate(idText, selectedDate);
     }
 }

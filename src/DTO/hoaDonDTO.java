@@ -1,44 +1,94 @@
 package DTO;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public class hoaDonDTO {
+
+public class HoaDonDTO {
     private int maHD;
+    private LocalDate ngayLap;
+    private String hinhThuc;
+    private double tongTien;
+    // private double tienGiam;
+    private double thanhTien;
+    private double tienKhachDua;
+    private double tienTraLai;
     private int maNV;
     private int maKH;
-    private Date ngayLap;
-    private String hinhThuc;
-    private int tongTien;
-    private int tienGiam;
-    private int thanhTien;
-    private int tienKhachDua;
-    private int tienTraLai;
-    private int is_Deleted;
+    private boolean isDeleted;
 
-    public hoaDonDTO(int maHD, int maNV, int maKH, Date ngayLap, String hinhThuc, int tongTien, int tienGiam, int thanhTien, int tienKhachDua, int tienTraLai, int is_Deleted) {
+    // Constructors
+    public HoaDonDTO() {}
+
+    public HoaDonDTO(int maHD, LocalDate ngayLap, String hinhThuc, double tongTien,
+                    double thanhTien, double tienKhachDua,
+                    double tienTraLai, int maNV, int maKH, boolean isDeleted) {
         this.maHD = maHD;
-        this.maNV = maNV;
-        this.maKH = maKH;
         this.ngayLap = ngayLap;
         this.hinhThuc = hinhThuc;
         this.tongTien = tongTien;
-        this.tienGiam = tienGiam;
         this.thanhTien = thanhTien;
         this.tienKhachDua = tienKhachDua;
         this.tienTraLai = tienTraLai;
-        this.is_Deleted = is_Deleted;
+        this.maNV = maNV;
+        this.maKH = maKH;
+        // this.isDeleted = isDeleted;
     }
 
-    public hoaDonDTO() {
-        
-    }
-
+    // Getters & Setters
     public int getMaHD() {
         return maHD;
     }
 
     public void setMaHD(int maHD) {
         this.maHD = maHD;
+    }
+
+    public LocalDate getNgayLap() {
+        return ngayLap;
+    }
+
+    public void setNgayLap(LocalDate ngayLap) {
+        this.ngayLap = ngayLap;
+    }
+
+    public String getHinhThuc() {
+        return hinhThuc;
+    }
+
+    public void setHinhThuc(String hinhThuc) {
+        this.hinhThuc = hinhThuc;
+    }
+
+    public double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public double getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+
+    public double getTienKhachDua() {
+        return tienKhachDua;
+    }
+
+    public void setTienKhachDua(double tienKhachDua) {
+        this.tienKhachDua = tienKhachDua;
+    }
+
+    public double getTienTraLai() {
+        return tienTraLai;
+    }
+
+    public void setTienTraLai(double tienTraLai) {
+        this.tienTraLai = tienTraLai;
     }
 
     public int getMaNV() {
@@ -57,68 +107,12 @@ public class hoaDonDTO {
         this.maKH = maKH;
     }
 
-    public Date getNgayLap() {
-        return ngayLap;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
-    public void setNgayLap(Date ngayLap) {
-        this.ngayLap = ngayLap;
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
-
-    public String getHinhThuc() {
-        return hinhThuc;
-    }
-
-    public void setHinhThuc(String hinhThuc) {
-        this.hinhThuc = hinhThuc;
-    }
-
-    public int getTongTien() {
-        return tongTien;
-    }
-
-    public void setTongTien(int tongTien) {
-        this.tongTien = tongTien;
-    }
-
-    public int getTienGiam() {
-        return tienGiam;
-    }
-
-    public void setTienGiam(int tienGiam) {
-        this.tienGiam = tienGiam;
-    }
-
-    public int getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(int thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-
-    public int getTienKhachDua() {
-        return tienKhachDua;
-    }
-
-    public void setTienKhachDua(int tienKhachDua) {
-        this.tienKhachDua = tienKhachDua;
-    }
-
-    public int getTienTraLai() {
-        return tienTraLai;
-    }
-
-    public void setTienTraLai(int tienTraLai) {
-        this.tienTraLai = tienTraLai;
-    }
-
-    public int getIs_Deleted() {
-        return is_Deleted;
-    }
-
-    public void setIs_Deleted(int is_Deleted) {
-        this.is_Deleted = is_Deleted;
-    }
-
 }
+
