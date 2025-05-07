@@ -910,7 +910,7 @@ public class QLBHController implements javafx.fxml.Initializable{
         Button printButton = new Button("In hóa đơn");
         printButton.setOnAction(e -> {
             // Đường dẫn cố định để lưu hóa đơn PDF
-            String directoryPath = "C:\\Users\\ntmkh\\OneDrive\\Documents\\SieuThiMini\\SieuThiMini\\Assets\\hoadon"; // Thay đổi theo nhu cầu
+            String directoryPath = "Assets/hoadon"; // Thay đổi theo nhu cầu
             File directory = new File(directoryPath);
     
             // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo thư mục mới
