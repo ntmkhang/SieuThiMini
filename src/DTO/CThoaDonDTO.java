@@ -1,60 +1,72 @@
 package DTO;
 
-public class CTHoaDonDTO {
+public class CThoaDonDTO {
+    private int maHD;
+    private int maSP;
+    private int soLuong;
+    private int giaBan;
+    private String tenSP;
+    private int thanhTien;
 
-        private int maHD;        // MaHD
-        private int maSP;        // MaSP
-        private int soLuong;     // SoLuong
-        private double giaBan;   // GiaBan
-    
-        // Constructor mặc định
-        public CTHoaDonDTO() {}
-    
-        // Constructor đầy đủ
-        public CTHoaDonDTO(int maHD, int maSP, int soLuong, double giaBan) {
-            this.maHD = maHD;
-            this.maSP = maSP;
-            this.soLuong = soLuong;
-            this.giaBan = giaBan;
-        }
-    
-        // Getter and Setter cho MaHD
-        public int getMaHD() {
-            return maHD;
-        }
-    
-        public void setMaHD(int maHD) {
-            this.maHD = maHD;
-        }
-    
-        // Getter and Setter cho MaSP
-        public int getMaSP() {
-            return maSP;
-        }
-    
-        public void setMaSP(int maSP) {
-            this.maSP = maSP;
-        }
-    
-        // Getter and Setter cho SoLuong
-        public int getSoLuong() {
-            return soLuong;
-        }
-    
-        public void setSoLuong(int soLuong) {
-            this.soLuong = soLuong;
-        }
-    
-        // Getter and Setter cho GiaBan
-        public double getGiaBan() {
-            return giaBan;
-        }
-    
-        public void setGiaBan(double giaBan) {
-            this.giaBan = giaBan;
-        }
-    
+    public CThoaDonDTO(int maHD, int maSP, int soLuong, int giaBan, String tenSP, int thanhTien) {
+        this.maHD = maHD;
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.giaBan = giaBan;
+        this.tenSP = tenSP;
+        this.thanhTien = soLuong * giaBan;
+    }
+
+    public CThoaDonDTO(int maHD, int maSP, int soLuong, int giaBan, String tenSP) {
+        this.maHD = maHD;
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.giaBan = giaBan;
+        this.tenSP = tenSP;
+    }
+
+    public CThoaDonDTO() {
         
-}
-     
+    }
 
+    public int getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(int thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+
+    public int getMaHD() {
+        return maHD;
+    }
+    public void setMaHD(int maHD) {
+        this.maHD = maHD;
+    }
+    public int getMaSP() {
+        return maSP;
+    }
+    public void setMaSP(int maSP) {
+        this.maSP = maSP;
+    }
+    public int getSoLuong() {
+        return soLuong;
+    }
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+    public int getGiaBan() {
+        return giaBan;
+    }
+    public void setGiaBan(int giaBan) {
+        this.giaBan = giaBan;
+    }
+}

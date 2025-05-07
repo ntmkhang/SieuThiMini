@@ -1,36 +1,32 @@
 package DAO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectManager {
     private Connection connect;
-    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=SieuThiMini;encrypt=true;trustServerCertificate=true";
-    private static String user = "sa";            // Tài khoản SQL Server
-    private static String password = "123456";    // Mật khẩu
+    private static final String URL = "jdbc:sqlserver://localhost:1433; databaseName=SieuThiMini;encrypt=true;trustServerCertificate=true;";
+    private static final String USER = "sa";
+    private static final String PASSWORD = "Password1234";
+
     public Connection getConnection() {
-        try {
-            if(connect !=null && !connect.isClosed())
-                return connect;
-        } catch (SQLException e) {
-                e.printStackTrace();              
-        }
-        return null;
+        return connect;
     }
 
-    public void openConnection(){
+    public void openConnection() {
         try {
-            this.connect = DriverManager.getConnection(url, user, password);
-
+            this.connect = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void closeConnection(){
+    public void closeConnection() {
         try {
-            if(connect != null && !connect.isClosed())
-               connect.close();
+            if (connect != null && !connect.isClosed()) {
+                connect.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

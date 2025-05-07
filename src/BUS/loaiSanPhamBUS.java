@@ -1,37 +1,21 @@
 package BUS;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import DAO.LoaiSPDAO;
-import DTO.LoaiSanPhamDTO;
+import DAO.loaiSanPhamDAO;
+import DTO.loaiSanPhamDTO;
+public class loaiSanPhamBUS {
+    private loaiSanPhamDAO loaiSanPhamDAO;
 
-public class LoaiSanPhamBUS {
-    private LoaiSPDAO lSpdao = new LoaiSPDAO();
-    public List<LoaiSanPhamDTO> getAllLoaiSanPham() {
-        return lSpdao.getAllList();
+    public loaiSanPhamBUS (){
+        loaiSanPhamDAO = new loaiSanPhamDAO();
     }
 
-    public String getTenLoaiById(int id) {
-        return lSpdao.getName(id);
+    public ArrayList<String> getAlLoaiSanPham(){
+        return loaiSanPhamDAO.getAllLoaiSanPham();
     }
 
-    public Boolean Them(LoaiSanPhamDTO lDto){
-        return lSpdao.themLoai(lDto);
-    }
-
-    public Boolean checkID(int id){
-        for (LoaiSanPhamDTO loai : lSpdao.getAllList()) {
-           if(loai.getMaLoai() == id)
-           return true; 
-        }
-        return false;
-    }
-
-    public Boolean Sua(LoaiSanPhamDTO loai){
-        return lSpdao.SuaLoaiSP(loai);
-    }
-
-    public Boolean Khoa(int id,Boolean isDeleted){
-        return lSpdao.khoaPL(id,isDeleted);
+    public int getMaLoaibyTenLoai(String tenLoai){
+        return loaiSanPhamDAO.getMaLoaibyTenLoai(tenLoai);
     }
 }

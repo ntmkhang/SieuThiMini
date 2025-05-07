@@ -232,7 +232,7 @@
                            <children>
                               <HBox alignment="CENTER" layoutX="21.0" layoutY="1.0" prefHeight="49.0" prefWidth="489.0">
                                  <children>
-                                    <Label fx:id="sellTenNV" prefHeight="31.0" prefWidth="319.0" text="Nguyễn Văn A">
+                                    <Label fx:id="sellTenNV" prefHeight="31.0" prefWidth="319.0">
                                        <font>
                                           <Font name="Arial" size="20.0" />
                                        </font>
@@ -242,7 +242,7 @@
                                           <Font name="Arial" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="sellMaNV" prefHeight="31.0" prefWidth="56.0" text="1">
+                                    <Label fx:id="sellMaNV" prefHeight="31.0" prefWidth="56.0">
                                        <font>
                                           <Font name="Arial" size="20.0" />
                                        </font>

@@ -1,47 +1,43 @@
 package BUS;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import DAO.SanPhamDAO;
-import DTO.SanPhamDTO;
+import DAO.sanPhamDAO;
+import DTO.sanPhamDTO;
 
-public class SanPhamBUS {
-    private SanPhamDAO _sanphamDAO = new SanPhamDAO();
+public class sanPhamBUS {
+    sanPhamDAO sanPhamDAO;
 
-    public List<SanPhamDTO> getAll(){
-        return new ArrayList<>(_sanphamDAO.getAllList());
+    public sanPhamBUS (){
+        sanPhamDAO = new sanPhamDAO();
     }
 
-    public List<SanPhamDTO> timKiem(String key){
-        if (key == null) {
-            return _sanphamDAO.getAllList();
-        }
-        return _sanphamDAO.getAllList().stream()
-                .filter(sp ->sp.getTenSP().toLowerCase().contains(key.toLowerCase()))
-                .collect(Collectors.toList());
+    public ArrayList<sanPhamDTO> getAllSanPham (){
+        return sanPhamDAO.getAllSanPham();
     }
 
-    public boolean ThemSP(SanPhamDTO sp){
-        return _sanphamDAO.ThemSP(sp);
+    public ArrayList<sanPhamDTO> timSanPhamTheoTenvaLoaiSanPham (String tenSP, String loaiSP){
+        return sanPhamDAO.timSanPhamTheoTenVaLoaiSP(tenSP, loaiSP);
     }
 
-    public boolean XoaSP(int id){
-        return _sanphamDAO.XoaSP(id);
+    public ArrayList<sanPhamDTO> timSanPhamTheoTen (String tenSP){
+        return sanPhamDAO.timSanPhamTheoTen(tenSP);
     }
 
-    public boolean SuaSP(int id, SanPhamDTO sp){
-        return _sanphamDAO.SuaSP(id, sp);
+    public ArrayList<sanPhamDTO> timSanPhamTheoLoai (String loaiSP){
+        return sanPhamDAO.timSanPhamTheoLoai(loaiSP);
     }
 
-    public SanPhamDTO TimKiemTheoId(int id){
-        return _sanphamDAO.TimKiemTheoId(id);
+    public boolean capNhatSoLuongSanPham (int maSP, int soLuongBan){
+        return sanPhamDAO.capNhatSoLuongSanPham(maSP, soLuongBan);
     }
 
-    public boolean capNhatTrangThai(int id, Boolean isDeleted){
-        return _sanphamDAO.capNhatTrangThaiSanPham(id, isDeleted);
+    public int getMaSPbyTenSP (String tenSP){
+        return sanPhamDAO.getMaSPbyTenSP(tenSP);
     }
 
+    public String getTenSPbyMaSP (int maSP){
+        return sanPhamDAO.getTenSPbyMaSp(maSP);
+    }
 }

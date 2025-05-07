@@ -85,7 +85,7 @@ public class CardProductController {
     @FXML
     void handleproductAddBTN(ActionEvent event) {
         Integer soLuong = productSpinner.getValue();
-        if(soLuong <=0 ||soLuong == null){
+        if(soLuong == null ||soLuong <=0){
             showError("Số lượng không được để trống và phải lớn hơn 0!");
             return;
         }
@@ -96,6 +96,9 @@ public class CardProductController {
         }
 
         if(currentProduct != null && qlbhController!=null){
+            if (qlbhController.isProductExist(currentProduct)) {
+                qlbhController.updateProductInTable(currentProduct, soLuong);
+            } else{
             qlbhController.addSanPhamToTable(new sanPhamDTO(
                 currentProduct.getMaSP(),
                 currentProduct.getTenSP(),
@@ -104,10 +107,11 @@ public class CardProductController {
                 Integer.parseInt(productPrice.getText().replaceAll("[^0-9]", "")),
                 soLuong,
                 currentProduct.getHinhAnh(),
-                currentProduct.getIsDeleted()), 
-                soLuong
+                currentProduct.getIsDeleted()), soLuong
             );
+            }
         }
+
     }
 
     private void showError(String message) {
