@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import BUS.LoaiSanPhamBUS;
-import BUS.SanPhamBUS;
+import BUS.loaiSanPhamBUS;
+import BUS.sanPhamBUS;
 import DAO.LoaiSPDAO;
-import DAO.SanPhamDAO;
-import DTO.LoaiSanPhamDTO;
-import DTO.SanPhamDTO;
+import DAO.sanPhamDAO;
+import DTO.loaiSanPhamDTO;
+import DTO.sanPhamDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -66,15 +66,15 @@ public class FormSPController {
     @FXML
     private Button search;
 
-    private LoaiSanPhamBUS _LoaiSPBUS = new LoaiSanPhamBUS() ;
-    private SanPhamBUS _sanphamBus  = new SanPhamBUS();
+    private loaiSanPhamBUS _LoaiSPBUS = new loaiSanPhamBUS() ;
+    private sanPhamBUS _sanphamBus  = new sanPhamBUS();
     private boolean isEditMode;
-    private SanPhamDTO sanpham = new SanPhamDTO();
+    private sanPhamDTO sanpham = new sanPhamDTO();
     private String url = "src/asset/img";
 
     @FXML
     void initialize() {
-        sanpham = new SanPhamDTO();
+        sanpham = new sanPhamDTO();
         LoadLoaiSP();
     }
     
@@ -139,8 +139,8 @@ public class FormSPController {
     
 
     private void LoadLoaiSP(){
-        List<LoaiSanPhamDTO> loaiSPList = _LoaiSPBUS.getAllLoaiSanPham();
-        for (LoaiSanPhamDTO loaiSanPhamDTO : loaiSPList) {
+        List<loaiSanPhamDTO> loaiSPList = _LoaiSPBUS.getAll();
+        for (loaiSanPhamDTO loaiSanPhamDTO : loaiSPList) {
             phanloai.getItems().add(loaiSanPhamDTO.getTenLoai());
         }
     }
@@ -150,8 +150,8 @@ public class FormSPController {
         sanpham.setTenSP(tensp.getText());
         sanpham.setMoTa(mota.getText());
         try {
-            double price = Double.parseDouble(giaban.getText());
-            sanpham.setGiaBan(price);
+            int price = Integer.parseInt(giaban.getText());
+            sanpham.setGia(price);
 
         } catch (NumberFormatException e) {
             // TODO: handle exception
@@ -172,8 +172,8 @@ public class FormSPController {
         
         String selectedName = phanloai.getValue();
         if (selectedName != null) {
-        List<LoaiSanPhamDTO> loaiSPList = _LoaiSPBUS.getAllLoaiSanPham();
-        for (LoaiSanPhamDTO loai : loaiSPList) {
+        List<loaiSanPhamDTO> loaiSPList = _LoaiSPBUS.getAll();
+        for (loaiSanPhamDTO loai : loaiSPList) {
             if (loai.getTenLoai().equals(selectedName)) {
                 sanpham.setMaLoai(loai.getMaLoai());
                 break;
@@ -186,11 +186,11 @@ public class FormSPController {
 
     }
 
-    public void setSanPham(SanPhamDTO sp) {
+    public void setSanPham(sanPhamDTO sp) {
         sanpham.setMaSP(sp.getMaSP());
         tensp.setText(sp.getTenSP());
         mota.setText(sp.getMoTa());
-        giaban.setText(String.valueOf(sp.getGiaBan()));
+        giaban.setText(String.valueOf(sp.getGia()));
         soluong.setText(String.valueOf(sp.getSoLuong()));
         
         // Set hình ảnh

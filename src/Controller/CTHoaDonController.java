@@ -5,10 +5,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import BUS.HoaDonBUS;
-import BUS.SanPhamBUS;
-import DTO.CTHoaDonDTO;
-import DTO.HoaDonDTO;
+import BUS.hoaDonBUS;
+import BUS.sanPhamBUS;
+import DTO.CThoaDonDTO;
+import DTO.hoaDonDTO;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,13 +27,13 @@ public class CTHoaDonController {
     private URL location;
 
     @FXML
-    private TableColumn<CTHoaDonDTO, Double> colGia;
+    private TableColumn<CThoaDonDTO, Double> colGia;
 
     @FXML
-    private TableColumn<CTHoaDonDTO, String> colSanPham;
+    private TableColumn<CThoaDonDTO, String> colSanPham;
 
     @FXML
-    private TableColumn<CTHoaDonDTO, Integer> colSoLuong;
+    private TableColumn<CThoaDonDTO, Integer> colSoLuong;
 
     @FXML
     private Label lbDate;
@@ -54,19 +54,19 @@ public class CTHoaDonController {
     private Label traLai;
 
     @FXML
-    private TableView<CTHoaDonDTO> tbCTHD;
+    private TableView<CThoaDonDTO> tbCTHD;
 
-    private HoaDonBUS _hoaDonBUS = new HoaDonBUS();
-    private SanPhamBUS _sanPhamBUS = new SanPhamBUS();
+    private hoaDonBUS _hoaDonBUS = new hoaDonBUS();
+    private sanPhamBUS _sanPhamBUS = new sanPhamBUS();
 
     @FXML
     void initialize() {
     }
 
 
-    public void showCTHoaDon(HoaDonDTO hoadon){
-        ObservableList<CTHoaDonDTO> dsSanPham = FXCollections.observableArrayList();
-         List<CTHoaDonDTO> cthdList = _hoaDonBUS.getALLSanPhamByID(hoadon.getMaHD());
+    public void showCTHoaDon(hoaDonDTO hoadon){
+        ObservableList<CThoaDonDTO> dsSanPham = FXCollections.observableArrayList();
+         List<CThoaDonDTO> cthdList = _hoaDonBUS.getCThoaDonbyMaHD(hoadon.getMaHD());
          lbDate.setText(hoadon.getNgayLap().toString());
          lbID.setText(String.valueOf(hoadon.getMaHD()));
          thanhToan.setText(hoadon.getHinhThuc());
@@ -80,12 +80,12 @@ public class CTHoaDonController {
         return new ReadOnlyObjectWrapper<>(tenSP);
     });
 
-    colSoLuong.setCellValueFactory(new PropertyValueFactory<CTHoaDonDTO,Integer>("soLuong"));
-    colGia.setCellValueFactory(new PropertyValueFactory<CTHoaDonDTO,Double>("giaBan"));
+    colSoLuong.setCellValueFactory(new PropertyValueFactory<CThoaDonDTO,Integer>("soLuong"));
+    colGia.setCellValueFactory(new PropertyValueFactory<CThoaDonDTO,Double>("giaBan"));
     dsSanPham.addAll(cthdList);
 
     double tongTienValue = 0;
-    for (CTHoaDonDTO cthd : cthdList) {
+    for (CThoaDonDTO cthd : cthdList) {
         tongTienValue += cthd.getSoLuong() * cthd.getGiaBan();
     }
 

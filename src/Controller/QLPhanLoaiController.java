@@ -3,8 +3,8 @@ package Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import BUS.LoaiSanPhamBUS;
-import DTO.LoaiSanPhamDTO;
+import BUS.loaiSanPhamBUS;
+import DTO.loaiSanPhamDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,22 +21,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class QLPhanLoaiController {
     @FXML
-    private TableColumn<LoaiSanPhamDTO, Integer> id;
+    private TableColumn<loaiSanPhamDTO, Integer> id;
 
     @FXML
-    private TableColumn<LoaiSanPhamDTO, String> moTa;
+    private TableColumn<loaiSanPhamDTO, String> moTa;
 
     @FXML
-    private TableView<LoaiSanPhamDTO> table;
+    private TableView<loaiSanPhamDTO> table;
 
     @FXML
-    private TableColumn<LoaiSanPhamDTO, String> ten;
+    private TableColumn<loaiSanPhamDTO, String> ten;
 
     @FXML
-    private TableColumn<LoaiSanPhamDTO, Boolean> trangThai;
+    private TableColumn<loaiSanPhamDTO, Integer> trangThai;
 
     @FXML
-    private TableColumn<LoaiSanPhamDTO, Void> handlekhoa;
+    private TableColumn<loaiSanPhamDTO, Void> handlekhoa;
 
     @FXML
     private Button btnSearch;
@@ -59,26 +59,25 @@ public class QLPhanLoaiController {
     @FXML
     private Button handleKhoa;
 
-    private ObservableList<LoaiSanPhamDTO> ds = FXCollections.observableArrayList();
-    private LoaiSanPhamBUS _loaiSanPhamBUS = new LoaiSanPhamBUS();
+    private ObservableList<loaiSanPhamDTO> ds = FXCollections.observableArrayList();
+    private loaiSanPhamBUS _loaiSanPhamBUS = new loaiSanPhamBUS();
 
     @FXML
     void initialize() {
-        ds.setAll(_loaiSanPhamBUS.getAllLoaiSanPham());
-        id.setCellValueFactory(new PropertyValueFactory<LoaiSanPhamDTO, Integer>("maLoai"));
-        ten.setCellValueFactory(new PropertyValueFactory<LoaiSanPhamDTO, String>("tenLoai"));
-        moTa.setCellValueFactory(new PropertyValueFactory<LoaiSanPhamDTO, String>("moTa"));
-        trangThai.setCellValueFactory(new PropertyValueFactory<LoaiSanPhamDTO, Boolean>("Deleted"));
+        ds.setAll(_loaiSanPhamBUS.getAll());
+        id.setCellValueFactory(new PropertyValueFactory<loaiSanPhamDTO, Integer>("maLoai"));
+        ten.setCellValueFactory(new PropertyValueFactory<loaiSanPhamDTO, String>("tenLoai"));
+        moTa.setCellValueFactory(new PropertyValueFactory<loaiSanPhamDTO, String>("moTa"));
+        trangThai.setCellValueFactory(new PropertyValueFactory<loaiSanPhamDTO, Integer>("IsDeleted"));
 
-        trangThai.setCellFactory(column -> new TableCell<LoaiSanPhamDTO, Boolean>() {
+        trangThai.setCellFactory(column -> new TableCell<loaiSanPhamDTO, Integer>() {
             @Override
-            protected void updateItem(Boolean item, boolean empty) {
+            protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    // Nếu isDeleted == true → Ngừng hoạt động
-                    setText(item ? "Ngừng hoạt động" : "Đang hoạt động");
+                    setText(item == 1 ? "Ngừng hoạt động" : "Đang hoạt động");
                 }
             }
 
@@ -99,7 +98,7 @@ public class QLPhanLoaiController {
 
    
     private void timKiem() {
-        FilteredList<LoaiSanPhamDTO> filteredList = new FilteredList<>(ds, p -> true);
+        FilteredList<loaiSanPhamDTO> filteredList = new FilteredList<>(ds, p -> true);
 
         txtTimKiem.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(loai -> {
@@ -113,7 +112,7 @@ public class QLPhanLoaiController {
 
 
 
-        SortedList<LoaiSanPhamDTO> sortedList = new SortedList<>(filteredList);
+        SortedList<loaiSanPhamDTO> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedList);
 
@@ -121,7 +120,7 @@ public class QLPhanLoaiController {
 
     @FXML
     private void Sua(ActionEvent event) {
-        LoaiSanPhamDTO loai = new LoaiSanPhamDTO();
+        loaiSanPhamDTO loai = new loaiSanPhamDTO();
         int ID = Integer.parseInt(txtID.getText());
         String MoTa = txtMota.getText();
         String Ten = txtTen.getText();
@@ -132,14 +131,14 @@ public class QLPhanLoaiController {
         }
         if(check == false){
             showAlert("ID "+ID+" chưa tồn tại, thêm mới");
-            LoaiSanPhamDTO lDto = new LoaiSanPhamDTO(ID, Ten, MoTa, false);
+            loaiSanPhamDTO lDto = new loaiSanPhamDTO(ID, Ten, MoTa, 0);
             _loaiSanPhamBUS.Them(lDto);
             ds.add(lDto);
             clearFields();
             return;
         }
 
-        LoaiSanPhamDTO lDto = new LoaiSanPhamDTO(ID, Ten, MoTa, false);
+        loaiSanPhamDTO lDto = new loaiSanPhamDTO(ID, Ten, MoTa, 0);
         _loaiSanPhamBUS.Sua(lDto);
         for (int i=0;i<ds.size();i++) {
             if(ds.get(i).getMaLoai()==ID){
@@ -175,7 +174,7 @@ public class QLPhanLoaiController {
             return;
         }
 
-        LoaiSanPhamDTO lDto = new LoaiSanPhamDTO(ID, Ten, MoTa, false);
+        loaiSanPhamDTO lDto = new loaiSanPhamDTO(ID, Ten, MoTa, 0);
         _loaiSanPhamBUS.Them(lDto);
         showAlert("Thêm thành công");
         ds.add(lDto);
@@ -188,7 +187,7 @@ public class QLPhanLoaiController {
     @FXML
     private void khoa(ActionEvent event) {
         try {
-            LoaiSanPhamDTO selected = table.getSelectionModel().getSelectedItem();
+            loaiSanPhamDTO selected = table.getSelectionModel().getSelectedItem();
             if (selected == null) {
                 showAlert("Vui lòng chọn một dòng để khóa.");
                 return;
@@ -200,14 +199,16 @@ public class QLPhanLoaiController {
                 showAlert("Không tồn tại");
                 return;
             }
-    
-            boolean newStatus = !selected.isDeleted(); // Đảo trạng thái
+            int newStatus = 1;
+            if(selected.getIsDeleted() == 1)
+            newStatus = 0; // Đảo trạng thái
+
             boolean success = _loaiSanPhamBUS.Khoa(ID, newStatus);
     
             if (success) {
-                selected.setDeleted(newStatus); // Cập nhật model
+                selected.setIsDeleted(newStatus); // Cập nhật model
                 table.refresh(); // Nếu không dùng Property, vẫn cần
-                showAlert(newStatus ? "Khóa thành công ID "+ID +" ." : "Mở khóa thành công ID "+ ID+" .");
+                showAlert(newStatus == 1 ? "Khóa thành công ID "+ID +" ." : "Mở khóa thành công ID "+ ID+" .");
             } else {
                 showAlert("Cập nhật trạng thái thất bại.");
             }

@@ -1,11 +1,26 @@
 package BUS;
 
-import DAO.NhanVienDAO;
+import java.util.ArrayList;
 
-public class NhanVienBUS {
- private NhanVienDAO _nhanVienDAO = new NhanVienDAO();
+import DAO.nhanVienDAO;
+import DTO.nhanVienDTO;
 
- public String getTenNvByID(int maNV){
-    return _nhanVienDAO.getTenNhanVienByID(maNV);
- }
+public class nhanVienBUS {
+    private nhanVienDAO nhanVienDAO;
+
+    public nhanVienBUS (){
+        nhanVienDAO = new nhanVienDAO();
+    }
+
+    public ArrayList<nhanVienDTO> getAllNhanVien (){
+        return nhanVienDAO.getAllNhanVien();
+    }
+
+    public nhanVienDTO getNhanVienByMaNV (int maNV){
+        return nhanVienDAO.getNhanVienbyMaNV(maNV);
+    }
+
+    public String getTenNVbyMaNV (int maNV){
+        return nhanVienDAO.getTenNhanVienbyMaNV(maNV);
+    }
 }

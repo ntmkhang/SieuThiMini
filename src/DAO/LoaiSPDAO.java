@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import DTO.LoaiSanPhamDTO;
+import DTO.loaiSanPhamDTO;
 
 public class LoaiSPDAO {
     private static ConnectManager _connect;
@@ -17,8 +17,8 @@ public class LoaiSPDAO {
         _connect = new ConnectManager();
     }
 
-    public List<LoaiSanPhamDTO> getAllList(){
-        List<LoaiSanPhamDTO> list = new ArrayList<>();
+    public List<loaiSanPhamDTO> getAllList(){
+        List<loaiSanPhamDTO> list = new ArrayList<>();
         String query = "select * from LoaiSanPham";
         try {
         _connect.openConnection();
@@ -26,11 +26,11 @@ public class LoaiSPDAO {
         PreparedStatement preparedStatement = conn.prepareStatement(query);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
-            list.add(new LoaiSanPhamDTO(
+            list.add(new loaiSanPhamDTO(
             rs.getInt("MaLoai"),
             rs.getString("TenLoai"),
             rs.getString("MoTa"),
-            rs.getBoolean("Is_Deleted"))
+            rs.getInt("Is_Deleted"))
             );
         }
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class LoaiSPDAO {
         _connect.closeConnection();
         return list;
     }
-    public boolean themLoai(LoaiSanPhamDTO loaiSanPhamDTO){
+    public boolean themLoai(loaiSanPhamDTO loaiSanPhamDTO){
         String query = "insert into LoaiSanPham(MaLoai, TenLoai,MoTa,Is_Deleted) values (?,?,?,?) ";
         try {
             _connect.openConnection();
@@ -49,7 +49,7 @@ public class LoaiSPDAO {
             preparedStatement.setInt(1, loaiSanPhamDTO.getMaLoai());
             preparedStatement.setString(2, loaiSanPhamDTO.getTenLoai());
             preparedStatement.setString(3, loaiSanPhamDTO.getMoTa());
-            preparedStatement.setBoolean(4, false);
+            preparedStatement.setInt(4, 0);
             return preparedStatement.executeUpdate() > 0;
         } catch (Exception e) {
             // TODO: handle exception
@@ -60,7 +60,7 @@ public class LoaiSPDAO {
         }
     }
 
-    public boolean SuaLoaiSP(LoaiSanPhamDTO loaiSanPham ){
+    public boolean SuaLoaiSP(loaiSanPhamDTO loaiSanPham ){
         String query = "update LoaiSanPham set TenLoai = ?, Mota = ? where MaLoai = ?";
         try {
             _connect.openConnection();
@@ -98,13 +98,13 @@ public class LoaiSPDAO {
         return null;
     }
 
-    public Boolean khoaPL(int id, Boolean isDeleted){
+    public Boolean khoaPL(int id, int isDeleted){
         String query = "update LoaiSanPham set Is_Deleted = ? where MaLoai =?";
         try {
             _connect.openConnection();
             Connection conn = _connect.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setBoolean(1, isDeleted);
+            stmt.setInt(1, isDeleted);
             stmt.setInt(2, id);
             return stmt.executeUpdate()>0;
         } catch (Exception e) {

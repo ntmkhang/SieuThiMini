@@ -1,7 +1,7 @@
 package Controller;
 
 
-import DTO.SanPhamDTO;
+import DTO.sanPhamDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -33,9 +33,9 @@ public class CardProductController {
     private Spinner<Integer> productSpinner;
 
     private QLBHController qlbhController; // Tham chiếu đến QLBHController
-    private SanPhamDTO currentProduct; // Sản phẩm hiện tại
+    private sanPhamDTO currentProduct; // Sản phẩm hiện tại
 
-    public void thongTinSanPham (String tenSP, int gia, String imgUrl, int soLuong, SanPhamDTO sanPham){
+    public void thongTinSanPham (String tenSP, int gia, String imgUrl, int soLuong, sanPhamDTO sanPham){
         this.currentProduct = sanPham;
         productName.setText(tenSP);
         productPrice.setText(gia + " VND");
@@ -86,7 +86,7 @@ public class CardProductController {
     @FXML
     void handleproductAddBTN(ActionEvent event) {
         Integer soLuong = productSpinner.getValue();
-        if(soLuong <=0 ||soLuong == null){
+        if(soLuong == null ||soLuong <=0){
             showError("Số lượng không được để trống và phải lớn hơn 0!");
             return;
         }
@@ -97,7 +97,7 @@ public class CardProductController {
         }
 
         if(currentProduct != null && qlbhController!=null){
-            qlbhController.addSanPhamToTable(new SanPhamDTO(
+            qlbhController.addSanPhamToTable(new sanPhamDTO(
                 currentProduct.getMaSP(),
                 currentProduct.getTenSP(),
                 currentProduct.getMaLoai(),
@@ -105,11 +105,12 @@ public class CardProductController {
                 Integer.parseInt(productPrice.getText().replaceAll("[^0-9]", "")),
                 soLuong,
                 currentProduct.getHinhAnh(),
-                currentProduct.getIsDeleted()), 
-                soLuong
+                currentProduct.getIsDeleted()), soLuong
             );
+            }
         }
-    }
+
+    
 
     private void showError(String message) {
         // Hiển thị thông báo lỗi (có thể sử dụng Alert hoặc Label tùy ý)

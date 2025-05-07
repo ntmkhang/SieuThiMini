@@ -54,8 +54,10 @@
         </content>
       </ScrollPane>
       <Button fx:id="XemCT" layoutX="617.0" layoutY="498.0" mnemonicParsing="false" onAction="#XemHoaDon" text="Xem" />
-      <TextField fx:id="key" layoutX="50.0" layoutY="85.0" />
-      <DatePicker fx:id="dateSearch" layoutX="217.0" layoutY="85.0" />
-      <Button fx:id="search" layoutX="415.0" layoutY="86.0" mnemonicParsing="false" onAction="#searchAction" text="Tìm kiếm" />
+      <TextField fx:id="key" layoutX="50.0" layoutY="85.0" prefHeight="25.0" prefWidth="106.0" />
+      <DatePicker fx:id="dateSearch" layoutX="340.0" layoutY="85.0" />
+      <Button fx:id="search" layoutX="712.0" layoutY="85.0" mnemonicParsing="false" onAction="#searchAction" text="Tìm kiếm" />
+      <DatePicker fx:id="toDateSearch" layoutX="530.0" layoutY="85.0" />
+      <TextField fx:id="searchKH" layoutX="167.0" layoutY="85.0" prefHeight="25.0" prefWidth="106.0" />
    </children>
 </AnchorPane>

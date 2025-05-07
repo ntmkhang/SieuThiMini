@@ -6,24 +6,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.itextpdf.layout.element.Image;
+
 public class AdminPaneController {
 
-    @FXML private StackPane contentPane;
+    @FXML
+    private StackPane contentPane;
 
-    @FXML private Button btnHome;
-    @FXML private Button btnQLSP;
-    @FXML private Button btnQLPL;
-    @FXML private Button btnQLNV;
-    @FXML private Button btnQLKH;
-    @FXML private Button btnQLHD;
-    @FXML private Button btnQLPN;
-    @FXML private Button btnTK;
+    @FXML
+    private Button btnHome;
+    @FXML
+    private Button btnQLSP;
+    @FXML
+    private Button btnQLPL;
+    @FXML
+    private Button btnQLNV;
+    @FXML
+    private Button btnQLKH;
+    @FXML
+    private Button btnQLHD;
+    @FXML
+    private Button btnQLPN;
+    @FXML
+    private Button btnTK;
 
     private Map<Button, String> buttonMap;
 
@@ -59,6 +71,7 @@ public class AdminPaneController {
             Pane newContent = loader.load();
             contentPane.getChildren().setAll(newContent);
         } catch (IOException e) {
+            e.printStackTrace();
             showError("Không thể tải giao diện: " + fxmlFile);
         }
     }

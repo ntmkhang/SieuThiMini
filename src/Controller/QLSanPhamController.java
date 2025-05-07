@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import BUS.SanPhamBUS;
-import DAO.SanPhamDAO;
-import DTO.SanPhamDTO;
+import BUS.sanPhamBUS;
+import DAO.sanPhamDAO;
+import DTO.sanPhamDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,11 +41,11 @@ public class QLSanPhamController {
     @FXML
     private ScrollPane scrollpane;
 
-    private SanPhamBUS _sanphamBUS = new SanPhamBUS();
-    private List<SanPhamDTO> listSP = new ArrayList<>();
+    private sanPhamBUS _sanphamBUS = new sanPhamBUS();
+    private List<sanPhamDTO> listSP = new ArrayList<>();
     @FXML
     void initialize() {
-        listSP = _sanphamBUS.getAll();
+        listSP = _sanphamBUS.getALL();
         ShowListSP();       
     }
 
@@ -58,7 +58,7 @@ public class QLSanPhamController {
 
     private void ShowListSP(){
         int n =0;
-        for (SanPhamDTO sp : listSP) {
+        for (sanPhamDTO sp : listSP) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ItemGUI.fxml"));
             Node nodes = loader.load();
@@ -88,6 +88,8 @@ public class QLSanPhamController {
         formStage.setScene(new Scene(root));
         formStage.setTitle("Add Product");
         formStage.showAndWait(); // đợi đến khi form đóng
+        listSP = _sanphamBUS.getALL();
+        ShowListSP();
         }catch(Exception exception)
         {
             exception.printStackTrace();

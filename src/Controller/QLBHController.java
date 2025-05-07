@@ -1,11 +1,25 @@
 package Controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import com.itextpdf.io.font.PdfEncodings;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
 
 import BUS.*;
 import DTO.*;
@@ -21,27 +35,35 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.converter.LocalDateStringConverter;
 import javafx.scene.control.Alert.AlertType;
+import com.itextpdf.layout.element.Paragraph;
+
 
 public class QLBHController implements javafx.fxml.Initializable{
 
@@ -244,6 +266,7 @@ public class QLBHController implements javafx.fxml.Initializable{
     private lichSuDiemBUS lichSuDiemBUS = new lichSuDiemBUS();
     private khachHangBUS khachHangBUS = new khachHangBUS();
     private sanPhamBUS sanPhamBUS = new sanPhamBUS();
+    private LoginBUS loginBUS = new LoginBUS();
 
     private int lastHoaDon = -1;
 
@@ -261,11 +284,19 @@ public class QLBHController implements javafx.fxml.Initializable{
         // Cài đặt cho endHDDatePicker
         endHDDatePicker.setConverter(new LocalDateStringConverter(vietnameseFormatter, vietnameseFormatter));
         endHDDatePicker.setPromptText("Chọn ngày kết thúc");
+
         sellSearchHoaDonCB.getItems().addAll("Mã hóa đơn", "Mã khách hàng");
         sellSearchHoaDonCB.setValue("Mã hóa đơn"); // set gia tri mac dinh cho cb
 
+        startLSDatePicker.setConverter(new LocalDateStringConverter(vietnameseFormatter, vietnameseFormatter));
+        startLSDatePicker.setPromptText("Chọn ngày bắt đầu");
+
+        endLSDatePicker.setConverter(new LocalDateStringConverter(vietnameseFormatter, vietnameseFormatter));
+        endLSDatePicker.setPromptText("Chọn ngày kết thúc");
+
         sellSearchTichDiemCB.getItems().addAll("Mã hóa đơn", "Mã khách hàng");
         sellSearchTichDiemCB.setValue("Mã hóa đơn");
+        
 
         ArrayList<lichSuDiemDTO> lichSuDiemList = lichSuDiemBUS.getAllLichSuDiem();
         ArrayList<hoaDonDTO> hoaDonList = hoaDonBUS.getAllHoaDon();
@@ -486,7 +517,28 @@ public class QLBHController implements javafx.fxml.Initializable{
 
     @FXML
     void handleInBTN(ActionEvent event) {
-
+        if (lastHoaDon == -1) {
+            showAlert(Alert.AlertType.WARNING, "Thông báo", "Chưa có hóa đơn để in.");
+            return;
+        }
+    
+        // Lấy thông tin hóa đơn từ database
+        hoaDonDTO hoaDon = hoaDonBUS.getHoaDonbyMaHD(lastHoaDon);
+        ArrayList<CThoaDonDTO> chiTietHoaDonList = hoaDonBUS.getCThoaDonbyMaHD(lastHoaDon);
+    
+        if (hoaDon == null || chiTietHoaDonList == null || chiTietHoaDonList.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không tìm thấy hóa đơn hoặc chi tiết hóa đơn.");
+            return;
+        }
+    
+        // Tạo nội dung hóa đơn để in
+        String noiDungHoaDon = createInvoiceContent(hoaDon, chiTietHoaDonList);
+    
+        // In hóa đơn
+        inHoaDon(noiDungHoaDon, hoaDon, chiTietHoaDonList);
+    
+        // Reset lastInvoiceId sau khi in để tránh in lại
+        lastHoaDon = -1;
     }
 
     @FXML
@@ -518,21 +570,6 @@ public class QLBHController implements javafx.fxml.Initializable{
         String ten = khachHangBUS.getTenKHbyMaKH(maKH);
         sellNamelbl.setText(ten);
         sellPointlbl.setText(String.valueOf(diem));
-
-        /*if(Integer.parseInt(sellDiemApDung.getText().trim()) > diem){
-            sellTienGiam.setText("0 VND");
-            showAlert(AlertType.ERROR, "Không hợp lệ!", "Điểm áp dụng phải nhỏ hơn hoặc bằng số điểm hiện có!");
-            return;
-        }
-
-        if(!isValidNumberEntry(sellDiemApDung.getText().trim())){
-            sellTienGiam.setText("0 VND");
-            showAlert(AlertType.ERROR, "Không hợp lệ!", "Có ký tự không hợp lệ, vui lòng nhập lại");
-            return;
-        }
-
-        int tienGiam = (int) Double.parseDouble(sellDiemApDung.getText().trim());
-        sellTienGiam.setText(String.format("%,d", tienGiam));*/
     }
 
     @FXML 
@@ -665,7 +702,21 @@ public class QLBHController implements javafx.fxml.Initializable{
 
     @FXML
     void handleXoaBTN(ActionEvent event) {
+        sanPhamDTO sanPham = sellTableView.getSelectionModel().getSelectedItem();
+        if(sanPham != null){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xóa sản phẩm");
+            alert.setHeaderText("Bạn có chắc muốn xóa sản phẩm này ?");
+            // xử lý sự kiện người dùng 
+            
+            Optional<ButtonType> button = alert.showAndWait();
+            if (button.isPresent() && button.get()== ButtonType.OK){
+                sellTableView.getItems().remove(sanPham);
+            }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Chưa chọn sản phẩm", "Hãy chọn sản phẩm cần xóa.");
 
+        }
     }
 
     @FXML
@@ -689,12 +740,41 @@ public class QLBHController implements javafx.fxml.Initializable{
         }
     }
 
-    public void addSanPhamToTable (SanPhamDTO sanPham, int soLuong){
-        int tongTien = sanPham.getGiaBan()*soLuong;
+    public void addSanPhamToTable (sanPhamDTO sanPham, int soLuong){
+        int tongTien = sanPham.getGia()*soLuong;
         sanPham.setSoLuong(soLuong);
         sanPham.setGia(tongTien);
 
         sellItems.add(sanPham);
+    }
+
+    public boolean isProductExist(sanPhamDTO currentProduct) {
+        // Duyệt qua tất cả các sản phẩm trong danh sách sellItems
+        for (sanPhamDTO item : sellItems) {
+            // Kiểm tra xem sản phẩm hiện tại có tồn tại trong danh sách không
+            if (item.getMaSP() == currentProduct.getMaSP()) {
+                return true;  // Nếu có, trả về true
+            }
+        }
+        return false;  // Nếu không tìm thấy, trả về false
+    }
+
+    public void updateProductInTable(sanPhamDTO currentProduct, int soLuong) {
+        boolean isUpdated = false;
+        for (sanPhamDTO item : sellItems) {
+            if (item.getMaSP() == currentProduct.getMaSP()) {
+                // Cập nhật số lượng và tổng giá
+                item.setSoLuong(item.getSoLuong() + soLuong);
+                item.setGia(item.getGia() + (currentProduct.getGia() * soLuong));
+                updateTongTien();
+                sellTableView.refresh();
+                isUpdated = true;
+                break;
+            }
+        }
+        // Cập nhật lại bảng (TableView) nếu có
+       // sellTableView.setItems(sellItems);;
+          // Nếu bạn dùng TableView
     }
 
     public void addKhachHang (String soDienThoai){
@@ -706,6 +786,13 @@ public class QLBHController implements javafx.fxml.Initializable{
         sellPointlbl.setText(String.valueOf(diem));
     }
 
+    public void addNhanVien (String tenDangNhap) {
+        int maNV = loginBUS.getMaNVbyTenDangNhap(tenDangNhap);
+        String TenNV = loginBUS.getTenNVbyMaNV(maNV);
+        sellTenNV.setText(TenNV);
+        sellMaNV.setText(String.valueOf(maNV));
+    }
+
     public void performSearch (){
         String ten = sellSearchBar.getText().trim();
         String loai = sellSearchCB.getValue();
@@ -715,7 +802,7 @@ public class QLBHController implements javafx.fxml.Initializable{
     }
 
     public void setLoaiSanPham (){
-        ArrayList<String> loaiSanPham = loaiSanPhamBUS.getAlLoaiSanPham();
+        ArrayList<String> loaiSanPham = loaiSanPhamBUS.getAllLoaiSanPham();
         loaiSanPham.add("Tất cả");
 
         ObservableList<String> loaiSanPhamOL = FXCollections.observableArrayList(loaiSanPham);
@@ -775,6 +862,140 @@ public class QLBHController implements javafx.fxml.Initializable{
         }
     }
 
+    private String createInvoiceContent(hoaDonDTO hoaDon, ArrayList<CThoaDonDTO> chiTietHoaDonList) {
+        StringBuilder sb = new StringBuilder();
+        String nv = sellTenNV.getText().trim();
+    
+        sb.append("======= HÓA ĐƠN BÁN HÀNG =======\n");
+        sb.append("Mã hóa đơn: ").append(hoaDon.getMaHD()).append("\n");
+        sb.append("Tên nhân viên: ").append(nv).append("\n");
+        sb.append("Mã khách hàng: ").append(hoaDon.getMaKH()).append("\n");
+        sb.append("Ngày lập: ").append(hoaDon.getNgayLap()).append("\n");
+        sb.append("Hình thức thanh toán: ").append(hoaDon.getHinhThuc()).append("\n");
+        sb.append("--------------------------------\n");
+        sb.append(String.format("%-20s %-10s %-10s\n", "Sản phẩm", "SL", "Giá (VNĐ)"));
+        sb.append("--------------------------------\n");
+    
+        for (CThoaDonDTO ctHoaDon : chiTietHoaDonList) {
+            sb.append(String.format("%-20s %-10d %,10d\n",
+                    ctHoaDon.getTenSP(),
+                    ctHoaDon.getSoLuong(),
+                    ctHoaDon.getGiaBan() * ctHoaDon.getSoLuong()));
+        }
+    
+        sb.append("--------------------------------\n");
+        sb.append("Tổng tiền: \t\t\t").append(String.format("%,d VNĐ", hoaDon.getTongTien())).append("\n");
+        sb.append("Tiền giảm: \t\t\t").append(String.format("%,d VNĐ", hoaDon.getTienGiam())).append("\n");
+        sb.append("Thành tiền: \t\t\t").append(String.format("%,d VNĐ", hoaDon.getThanhTien())).append("\n");
+        sb.append("Tiền khách đưa: \t\t").append(String.format("%,d VNĐ", hoaDon.getTienKhachDua())).append("\n");
+        sb.append("Tiền trả lại: \t\t\t").append(String.format("%,d VNĐ", hoaDon.getTienTraLai())).append("\n");
+        sb.append("================================\n");
+        sb.append("Cảm ơn Quý khách đã mua hàng!\n");
+    
+        return sb.toString();
+    }
+
+    private void inHoaDon(String noiDungHoaDon, hoaDonDTO hoaDon, ArrayList<CThoaDonDTO> chiTietHoaDonList) {
+        Stage stage = new Stage();
+        stage.setTitle("Hóa đơn thanh toán");
+    
+        // Tạo nội dung hóa đơn
+        TextArea hoaDonText = new TextArea(noiDungHoaDon);
+        hoaDonText.setEditable(false);
+        hoaDonText.setWrapText(true);
+        hoaDonText.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 13px;");
+        hoaDonText.setPrefSize(400, 500);
+    
+        // Nút in
+        Button printButton = new Button("In hóa đơn");
+        printButton.setOnAction(e -> {
+            // Đường dẫn cố định để lưu hóa đơn PDF
+            String directoryPath = "Assets/hoadon"; // Thay đổi theo nhu cầu
+            File directory = new File(directoryPath);
+    
+            // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo thư mục mới
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+    
+            // Tạo tên file PDF dựa trên thời gian hiện tại để đảm bảo không trùng lặp
+            String fileName = generateFileName();
+            File file = new File(directory, fileName);
+    
+            try {
+                // Gọi hàm để lưu hóa đơn vào file PDF
+                saveHoaDonToPDF(file, noiDungHoaDon, hoaDon, chiTietHoaDonList);
+                showAlert(Alert.AlertType.INFORMATION, "In thành công", "Hóa đơn đã được lưu vào file PDF.");
+            } catch (IOException ex) {
+                showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể lưu hóa đơn vào file PDF.");
+                ex.printStackTrace();
+            }
+        });
+    
+        VBox root = new VBox(10, hoaDonText, printButton);
+        root.setPadding(new Insets(20));
+        root.setAlignment(Pos.CENTER);
+    
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL); // Chặn cửa sổ chính
+        stage.showAndWait();
+    }
+
+    private void saveHoaDonToPDF(File file, String noiDungHoaDon, hoaDonDTO hoaDon, ArrayList<CThoaDonDTO> chiTietHoaDonList) throws IOException {
+        // Đường dẫn đến file font DejaVuSans.ttf
+        String fontPath = "src/main/resources/fonts/DejaVuSans.ttf";
+        
+        try (PdfWriter writer = new PdfWriter(file);
+             PdfDocument pdfDoc = new PdfDocument(writer);
+             Document document = new Document(pdfDoc)) {
+    
+            // Nhúng font có hỗ trợ Unicode tiếng Việt
+            PdfFont font = PdfFontFactory.createFont(fontPath, PdfEncodings.IDENTITY_H, true);
+            document.setFont(font);
+    
+            // Thêm các thông tin hóa đơn vào PDF dưới dạng văn bản thuần túy
+            document.add(new Paragraph("======= HÓA ĐƠN BÁN HÀNG =======").setFont(font).setBold());
+            document.add(new Paragraph("Mã hóa đơn: " + hoaDon.getMaHD()).setFont(font));
+            document.add(new Paragraph("Tên nhân viên: " + sellTenNV.getText().trim()).setFont(font));
+            document.add(new Paragraph("Mã khách hàng: " + hoaDon.getMaKH()).setFont(font));
+            document.add(new Paragraph("Ngày lập: " + hoaDon.getNgayLap()).setFont(font));
+            document.add(new Paragraph("Hình thức thanh toán: " + hoaDon.getHinhThuc()).setFont(font));
+            document.add(new Paragraph("--------------------------------").setFont(font));
+    
+            // Dữ liệu chi tiết hóa đơn
+            document.add(new Paragraph(String.format("%-20s %-10s %-10s", "Sản phẩm", "SL", "Giá (VNĐ)")).setFont(font));
+            document.add(new Paragraph("--------------------------------").setFont(font));
+    
+            // Lặp qua chi tiết hóa đơn để thêm từng sản phẩm vào PDF
+            for (CThoaDonDTO ctHoaDon : chiTietHoaDonList) {
+                document.add(new Paragraph(String.format("%-20s %-10d %,10d",
+                        ctHoaDon.getTenSP(),
+                        ctHoaDon.getSoLuong(),
+                        ctHoaDon.getGiaBan() * ctHoaDon.getSoLuong())).setFont(font));
+            }
+    
+            document.add(new Paragraph("--------------------------------").setFont(font));
+            document.add(new Paragraph("Tổng tiền: " + String.format("%,d VNĐ", hoaDon.getTongTien())).setFont(font));
+            document.add(new Paragraph("Tiền giảm: " + String.format("%,d VNĐ", hoaDon.getTienGiam())).setFont(font));
+            document.add(new Paragraph("Thành tiền: " + String.format("%,d VNĐ", hoaDon.getThanhTien())).setFont(font));
+            document.add(new Paragraph("Tiền khách đưa: " + String.format("%,d VNĐ", hoaDon.getTienKhachDua())).setFont(font));
+            document.add(new Paragraph("Tiền trả lại: " + String.format("%,d VNĐ", hoaDon.getTienTraLai())).setFont(font));
+            document.add(new Paragraph("================================").setFont(font));
+            document.add(new Paragraph("Cảm ơn Quý khách đã mua hàng!").setFont(font));
+        }
+    }
+
+    private String generateFileName() {
+    // Tạo tên file với timestamp để đảm bảo không trùng lặp
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        String fileName = "HoaDon_" + now.format(formatter) + ".pdf";
+        System.out.println(fileName);
+        return "HoaDon_" + now.format(formatter) + ".pdf";
+    }
+
+    
     private boolean isValidPhoneNumber(String phoneNumber) {
         // Kiểm tra số điện thoại phải có 10 chữ số
         return phoneNumber.matches("\\d{10}");
@@ -792,8 +1013,11 @@ public class QLBHController implements javafx.fxml.Initializable{
         loadDataLichSuDiem(lichSuDiemBUS.getAllLichSuDiem());
         sellSearchBar.clear();
         sellSearchCB.setValue("Tất cả");
-        sellSoDienThoai.setText("Số điện thoại");;
-        sellDiemApDung.setText("0");;
+        sellHinhThucCB.setPromptText("Chọn hình thức");
+        sellSoDienThoai.clear();
+        sellSoDienThoai.setPromptText("Số điện thoại");
+        sellDiemApDung.clear();
+        sellDiemApDung.setPromptText("0");
         sellNamelbl.setText("");
         sellPointlbl.setText("");
         sellSoDienThoai.setText("");
@@ -801,6 +1025,7 @@ public class QLBHController implements javafx.fxml.Initializable{
         sellTienGiam.setText("0 VND");
         sellThanhTien.setText("0 VND");
         sellTienKhachTra.clear();
+        sellTienKhachTra.setPromptText("0 VND");
         sellTienTraLai.setText("0 VND");
     }
 
