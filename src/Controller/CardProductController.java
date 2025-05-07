@@ -1,6 +1,7 @@
 package Controller;
 
-import DTO.sanPhamDTO;
+
+import DTO.SanPhamDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -32,9 +33,9 @@ public class CardProductController {
     private Spinner<Integer> productSpinner;
 
     private QLBHController qlbhController; // Tham chiếu đến QLBHController
-    private sanPhamDTO currentProduct; // Sản phẩm hiện tại
+    private SanPhamDTO currentProduct; // Sản phẩm hiện tại
 
-    public void thongTinSanPham (String tenSP, int gia, String imgUrl, int soLuong, sanPhamDTO sanPham){
+    public void thongTinSanPham (String tenSP, int gia, String imgUrl, int soLuong, SanPhamDTO sanPham){
         this.currentProduct = sanPham;
         productName.setText(tenSP);
         productPrice.setText(gia + " VND");
@@ -96,7 +97,7 @@ public class CardProductController {
         }
 
         if(currentProduct != null && qlbhController!=null){
-            qlbhController.addSanPhamToTable(new sanPhamDTO(
+            qlbhController.addSanPhamToTable(new SanPhamDTO(
                 currentProduct.getMaSP(),
                 currentProduct.getTenSP(),
                 currentProduct.getMaLoai(),

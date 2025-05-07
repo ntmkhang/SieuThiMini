@@ -689,8 +689,8 @@ public class QLBHController implements javafx.fxml.Initializable{
         }
     }
 
-    public void addSanPhamToTable (sanPhamDTO sanPham, int soLuong){
-        int tongTien = sanPham.getGia()*soLuong;
+    public void addSanPhamToTable (SanPhamDTO sanPham, int soLuong){
+        int tongTien = sanPham.getGiaBan()*soLuong;
         sanPham.setSoLuong(soLuong);
         sanPham.setGia(tongTien);
 
