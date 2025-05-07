@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -46,14 +47,22 @@ public class lichSuDiemDAO {
         try {
             connectManager.openConnection();
             Connection connection = connectManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, lichSuDiem.getMaKH());
             preparedStatement.setInt(2, lichSuDiem.getMaHD());
             preparedStatement.setInt(3, lichSuDiem.getDiem());
             preparedStatement.setDate(4, lichSuDiem.getNgayTichLuy());
             preparedStatement.setString(5, lichSuDiem.getLoaiGD());
             int rowAffected = preparedStatement.executeUpdate();
-            return rowAffected >0;
+
+            if (rowAffected > 0) {
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if (rs.next()) {
+                    int generatedId = rs.getInt(1); 
+                }
+                return true;
+            } 
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -13,6 +13,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -27,7 +29,7 @@
             <content>
               <AnchorPane fx:id="sellForm" minHeight="0.0" minWidth="0.0" prefHeight="1079.0" prefWidth="1721.0">
                      <children>
-                        <AnchorPane layoutX="9.0" layoutY="109.0" prefHeight="673.0" prefWidth="767.0" stylesheets="@../../Assets/css/style.css">
+                        <AnchorPane layoutX="9.0" layoutY="109.0" prefHeight="677.0" prefWidth="767.0" stylesheets="@../../Assets/css/style.css">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -78,7 +80,7 @@
                               </ComboBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="564.0" layoutY="14.0" prefHeight="766.0" prefWidth="469.0" stylesheets="@../../Assets/css/style.css" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                        <AnchorPane layoutX="564.0" layoutY="14.0" prefHeight="773.0" prefWidth="474.0" stylesheets="@../../Assets/css/style.css" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -223,14 +225,14 @@
                               <ComboBox fx:id="sellHinhThucCB" layoutX="70.0" layoutY="320.0" prefHeight="28.0" prefWidth="150.0" promptText="Chọn hình thức" styleClass="font-size14px" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="243.0" layoutY="21.0" prefHeight="61.0" prefWidth="532.0" stylesheets="@../../Assets/css/style.css">
+                        <AnchorPane layoutX="103.0" layoutY="38.0" prefHeight="40.0" prefWidth="532.0" stylesheets="@../../Assets/css/style.css">
                            <styleClass>
                               <String fx:value="shadow" />
                               <String fx:value="white-bg" />
                               <String fx:value="radius" />
                            </styleClass>
                            <children>
-                              <HBox alignment="CENTER" layoutX="21.0" layoutY="1.0" prefHeight="49.0" prefWidth="489.0">
+                              <HBox alignment="CENTER" layoutX="28.0" layoutY="-2.0" prefHeight="57.0" prefWidth="489.0">
                                  <children>
                                     <Label fx:id="sellTenNV" prefHeight="31.0" prefWidth="319.0">
                                        <font>
@@ -251,6 +253,24 @@
                               </HBox>
                            </children>
                         </AnchorPane>
+                        <ImageView fitHeight="33.0" fitWidth="94.0" layoutX="5.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../main/resources/images/logo1.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="sellDangXuatBTN" layoutX="658.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleDangXuatBTN" prefHeight="35.0" prefWidth="117.0" styleClass="seller-button" stylesheets="@../../Assets/css/style.css" text="Đăng xuất" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="58.0" fitWidth="61.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../main/resources/images/logo2.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
