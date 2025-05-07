@@ -37,6 +37,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -177,6 +178,9 @@ public class QLBHController implements javafx.fxml.Initializable{
 
     @FXML
     private GridPane sellGridPane;
+
+    @FXML
+    private Button sellDangXuatBTN;
 
     @FXML
     private Button sellInBTN;
@@ -657,12 +661,9 @@ public class QLBHController implements javafx.fxml.Initializable{
         if(!check.isEmpty()){
             diemTru = Integer.parseInt(sellDiemApDung.getText().trim());
         }
-        
-        hoaDonBUS.addHoaDon(hoadon);
-
+        int maHD = hoaDonBUS.addHoaDon(hoadon);
+        System.out.println("maHD " + maHD);
         khachHangBUS.subtractDiemTichLuy(maKH, diemTru);
-
-        int maHD = hoaDonBUS.getMaHD();
         lastHoaDon = maHD;
         
         for (sanPhamDTO sanPhamDTO : sellItems) {
@@ -736,6 +737,26 @@ public class QLBHController implements javafx.fxml.Initializable{
             stage.show();
             
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     @FXML
+    void handleDangXuatBTN(ActionEvent event) {
+        try {
+            // Load lại màn hình đăng nhập
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUi/LoginGUI.fxml"));
+            Parent loginRoot = loader.load();
+    
+            // Lấy stage hiện tại từ event
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
+            // Tạo scene mới và gán vào stage
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.setTitle("Đăng nhập");
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -910,7 +931,7 @@ public class QLBHController implements javafx.fxml.Initializable{
         Button printButton = new Button("In hóa đơn");
         printButton.setOnAction(e -> {
             // Đường dẫn cố định để lưu hóa đơn PDF
-            String directoryPath = "Assets/hoadon"; // Thay đổi theo nhu cầu
+            String directoryPath = "C:\\Users\\ntmkh\\OneDrive\\Documents\\SieuThiMini\\SieuThiMini\\Assets\\hoadon"; // Thay đổi theo nhu cầu
             File directory = new File(directoryPath);
     
             // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo thư mục mới

@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import BUS.sanPhamBUS;
@@ -91,12 +92,13 @@ public class hoaDonDAO {
         return maHD;
     }
     
-    public boolean themHoaDon (hoaDonDTO hoaDon){
+    public int themHoaDon (hoaDonDTO hoaDon){
+        int maHD = -1;
         String query ="INSERT INTO HoaDon(NgayLap, HinhThuc, TongTien, TienGiam, ThanhTien, TienKhachDua, TienTraLai, MaNV, MaKH, Is_Deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
         try {
             connectManager.openConnection();
             Connection connection = connectManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setDate(1, new java.sql.Date(hoaDon.getNgayLap().getTime()));
             preparedStatement.setString(2,hoaDon.getHinhThuc());
             preparedStatement.setInt(3,hoaDon.getTongTien());
@@ -111,13 +113,21 @@ public class hoaDonDAO {
                 preparedStatement.setInt(9, hoaDon.getMaKH());
             }
             int rowAffected = preparedStatement.executeUpdate();
-            return rowAffected >0;
+            if(rowAffected >0 ){
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if(rs.next()){
+                    maHD = rs.getInt(1);
+                }
+            }
+           // return rowAffected >0;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            //return false;
         } finally {
             connectManager.closeConnection();
         }
+
+        return maHD;
     }
 
     public boolean themCThoaDon (CThoaDonDTO cthd){

@@ -19,7 +19,7 @@ public class hoaDonBUS {
         return hoaDonDAO.getAllHoaDon();
     }
 
-    public boolean addHoaDon (hoaDonDTO hoaDon){
+    public int addHoaDon (hoaDonDTO hoaDon){
         return hoaDonDAO.themHoaDon(hoaDon);
     }
 
