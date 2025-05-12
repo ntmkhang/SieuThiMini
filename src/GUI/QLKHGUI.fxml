@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="810.0" style="-fx-background-color: #F5F4E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLKHController">
+    <top>
+        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="810.0" style="-fx-background-color: #F5F4E8;" BorderPane.alignment="CENTER">
+            <top>
+                <Label text="Quản Lý Khách Hàng" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="42.0" />
+                    </font>
+                    <style>-fx-text-fill: #1a1a1a;</style>
+                </Label>
+            </top>
+         <left>
+                <Label fx:id="btnThem" alignment="CENTER" onMouseClicked="#ThemKH" prefHeight="60.0" prefWidth="130.0" textFill="#FFD51A" BorderPane.alignment="CENTER">
+                    <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Assets/Img/addIcon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <style>
+                        -fx-background-color: #FFD51A;
+                        -fx-text-fill: white;
+                        -fx-font-weight: bold;
+                        -fx-border-radius: 10;
+                        -fx-background-radius: 10;
+                    </style>
+                </Label>
+         </left>
+         <center>
+                <Label fx:id="btnSua" alignment="CENTER" onMouseClicked="#SuaKH" prefHeight="60.0" prefWidth="130.0" textFill="#FFD51A" BorderPane.alignment="CENTER">
+                    <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../Assets/img/icon1.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <style>
+                        -fx-background-color: #FFD51A;
+                        -fx-text-fill: white;
+                        -fx-font-weight: bold;
+                        -fx-border-radius: 10;
+                        -fx-background-radius: 10;
+                    </style>
+                </Label>
+         </center>
+         <right>
+            <Label fx:id="adminDeleteBTN" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleDeleteClicked" prefHeight="60.0" prefWidth="130.0" style="-fx-background-radius: 10; -fx-background-color: #ffd51a;" textFill="#ffd51a" BorderPane.alignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/img/deleteIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </right>
+         <bottom>
+                  <TextField fx:id="txtTimKiem" maxWidth="417.0" onAction="#handleSearchEnter" prefHeight="43.0" prefWidth="417.0" promptText="Tìm Kiếm Theo Số Điện Thoại" styleClass="shadow" stylesheets="@../../Assets/css/style.css" BorderPane.alignment="CENTER" />
+         </bottom>
+        </BorderPane>
+    </top>
+    <bottom>
+        <TableView fx:id="tbBang" minWidth="-Infinity" prefHeight="343.0" prefWidth="810.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="tbMaKH" prefWidth="114.66668319702148" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Mã Khách Hàng" />
+                <TableColumn fx:id="tbTenKH" prefWidth="333.33338928222656" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Họ Và Tên Khách Hàng" />
+                <TableColumn fx:id="tbSDT" minWidth="0.0" prefWidth="203.99990844726562" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Số Điện Thoại" />
+                <TableColumn fx:id="tbDiemTichLuy" prefWidth="156.666748046875" style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Điểm Tích Lũy" />
+            </columns>
+        </TableView>
+    </bottom>
+    
+</BorderPane>

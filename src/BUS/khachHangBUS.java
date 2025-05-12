@@ -16,7 +16,7 @@ public class khachHangBUS {
         return khachHangDAO.getAllKhachHang();
     }
 
-    public boolean addKhachHang (khachHangDTO khachHang){
+    public int addKhachHang (khachHangDTO khachHang){
         return khachHangDAO.addKhachHang(khachHang);
     }
 
@@ -61,5 +61,13 @@ public class khachHangBUS {
 
     public boolean subtractDiemTichLuy (int maKH, int diemTru){
         return khachHangDAO.subtractDiemTichLuy(maKH, diemTru);
+    }
+
+    public boolean deleteKhachHangDTO ( int MaKH){
+        return khachHangDAO.deleteKhachHangDTO(MaKH);
+    }
+
+    public boolean updateKhachHangDTO ( khachHangDTO khachHangDTO){
+        return khachHangDAO.updateKhachHangDTO(khachHangDTO);
     }
 }

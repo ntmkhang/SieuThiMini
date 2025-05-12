@@ -5,8 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
 import java.io.IOException;
@@ -21,11 +25,15 @@ public class AdminPaneController {
     private StackPane contentPane;
 
     @FXML
+    private Button adminDangXuatBTN;
+    @FXML
     private Button btnHome;
     @FXML
     private Button btnQLSP;
     @FXML
     private Button btnQLPL;
+    @FXML
+    private Button btnQLTK;
     @FXML
     private Button btnQLNV;
     @FXML
@@ -50,11 +58,12 @@ public class AdminPaneController {
         // buttonMap.put(btnHome, "Home.fxml");
         buttonMap.put(btnQLSP, "QLSanPhamGUI.fxml");
         buttonMap.put(btnQLPL, "QLPhanLoaiGUI.fxml");
-        buttonMap.put(btnQLNV, "QLNhanVien.fxml");
-        buttonMap.put(btnQLKH, "QLKhachHang.fxml");
+        buttonMap.put(btnQLNV, "QLNVGUI.fxml");
+        buttonMap.put(btnQLTK, "QLTKGUI.fxml");
+        buttonMap.put(btnQLKH, "QLKHGUI.fxml");
         buttonMap.put(btnQLHD, "QLHoaDonGUI.fxml");
-        buttonMap.put(btnQLPN, "QLPhieuNhap.fxml");
-        buttonMap.put(btnTK, "ThongKe.fxml");
+        buttonMap.put(btnQLPN, "NhapHang.fxml");
+        buttonMap.put(btnTK, "ThongKeGui.fxml");
     }
 
     private void setupButtonActions() {
@@ -73,6 +82,26 @@ public class AdminPaneController {
         } catch (IOException e) {
             e.printStackTrace();
             showError("Không thể tải giao diện: " + fxmlFile);
+        }
+    }
+
+    @FXML 
+    void handleDangXuatBTN (ActionEvent event){
+        try {
+            // Load lại màn hình đăng nhập
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUi/LoginGUI.fxml"));
+            Parent loginRoot = loader.load();
+    
+            // Lấy stage hiện tại từ event
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
+            // Tạo scene mới và gán vào stage
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.setTitle("Đăng nhập");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -70,7 +70,7 @@ public class FormSPController {
     private sanPhamBUS _sanphamBus  = new sanPhamBUS();
     private boolean isEditMode;
     private sanPhamDTO sanpham = new sanPhamDTO();
-    private String url = "src/asset/img";
+    private String url = "/Assets/img/Product/";
 
     @FXML
     void initialize() {

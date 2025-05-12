@@ -716,7 +716,6 @@ public class QLBHController implements javafx.fxml.Initializable{
             }
         } else {
             showAlert(Alert.AlertType.WARNING, "Chưa chọn sản phẩm", "Hãy chọn sản phẩm cần xóa.");
-
         }
     }
 
@@ -793,9 +792,6 @@ public class QLBHController implements javafx.fxml.Initializable{
                 break;
             }
         }
-        // Cập nhật lại bảng (TableView) nếu có
-       // sellTableView.setItems(sellItems);;
-          // Nếu bạn dùng TableView
     }
 
     public void addKhachHang (String soDienThoai){
@@ -931,7 +927,7 @@ public class QLBHController implements javafx.fxml.Initializable{
         Button printButton = new Button("In hóa đơn");
         printButton.setOnAction(e -> {
             // Đường dẫn cố định để lưu hóa đơn PDF
-            String directoryPath = "C:\\Users\\ntmkh\\OneDrive\\Documents\\SieuThiMini\\SieuThiMini\\Assets\\hoadon"; // Thay đổi theo nhu cầu
+            String directoryPath = "C:\\Users\\ntmkh\\OneDrive\\Documents\\Git\\SieuThiMini\\Assets\\hoadon"; // Thay đổi theo nhu cầu
             File directory = new File(directoryPath);
     
             // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo thư mục mới

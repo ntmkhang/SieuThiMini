@@ -49,6 +49,8 @@ public class LoginController {
             if(!loginBUS.isAdmin(username, password)){
                 System.out.println("✅ Đăng nhập thành công!");
                 openCustomerPage(username); 
+            } else {
+                openAdminPanel(username);
             }
         } else {
             showError("Lỗi đăng nhập", "Tên người dùng hoặc mật khẩu không chính xác.");
@@ -63,7 +65,7 @@ public class LoginController {
 
     private void openCustomerPage(String username) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminPaneGUI.fxml")); // 🔹 Đảm bảo đúng đường dẫn
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/QLBHGUI.fxml")); // 🔹 Đảm bảo đúng đường dẫn
             Parent root = loader.load();
             QLBHController controller = loader.getController();
             controller.addNhanVien(username);
@@ -75,6 +77,20 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
             showError("Lỗi", "Không thể mở trang Quản lý bán hàng.");
+        }
+    }
+
+    private void openAdminPanel (String username){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AdminPaneGUI.fxml")); // 🔹 Đảm bảo đúng đường dẫn
+            Parent root = loader.load();
+            Stage stage = (Stage) txtUsername.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Admin");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Lỗi", "Không thể mở trang Admin.");
         }
     }
 

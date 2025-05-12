@@ -87,7 +87,12 @@ public class formThemKhachHangController {
         khachHang.setSoDienThoai(sellInputSoDienThoai.getText());
         khachHang.setDiemTichLuy(0);
 
-        boolean flag = khachHangBUS.addKhachHang(khachHang);
+        int maKH = khachHangBUS.addKhachHang(khachHang);
+        boolean flag = false;
+        
+        if(maKH != -1){
+            flag = true;
+        }
 
         if (flag){
             showAlert(Alert.AlertType.INFORMATION, "Thành công!", "Thêm khách hàng thành công!");
