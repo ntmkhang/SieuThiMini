@@ -15,8 +15,6 @@ public class ThemKHController {
     @FXML
     private Label btnClosePopUps;
 
-    @FXML
-    private Label btnThem;
 
     @FXML
     private TextField txtDiemTichLuy;
@@ -46,7 +44,7 @@ public class ThemKHController {
     }
     private void closePopup() {
         // Lấy đối tượng Stage của cửa sổ hiện tại và đóng nó
-        Stage stage = (Stage) btnThem.getScene().getWindow();
+        Stage stage = (Stage) btnClosePopUps.getScene().getWindow();
         stage.close();
     }
     public void initialize() {

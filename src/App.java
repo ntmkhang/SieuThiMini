@@ -8,7 +8,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/LoginGUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/AdminPaneGUI.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("SALE");
             primaryStage.setScene(scene);
@@ -17,8 +17,9 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }

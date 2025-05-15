@@ -40,7 +40,7 @@ public class khachHangDAO {
 
     public int getMaKH (){
         int maKH = 0;
-        String query = " SELECT TOP 1 FROM KhachHang ORDER BY MaKH DESC";
+        String query = " SELECT TOP 1 MaKH FROM KhachHang ORDER BY MaKH DESC";
         try {
             connectManager.openConnection();
             Connection connection = connectManager.getConnection();

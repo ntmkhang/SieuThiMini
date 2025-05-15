@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -210,9 +211,23 @@ public class QLKHController {
     }
 
     @FXML
-    void handleSearchEnter(ActionEvent event) {
-        
+void Search(KeyEvent event) {
+    String sdt = txtTimKiem.getText().trim();
+    if (sdt.isEmpty()) {
+        tbBang.setItems(list); // Hiển thị lại toàn bộ nếu không nhập gì
+        return;
     }
+
+    ObservableList<khachHangDTO> ketQua = FXCollections.observableArrayList();
+    for (khachHangDTO kh : list) { // Duyệt danh sách gốc
+        if (kh.getSoDienThoai().contains(sdt)) {
+            ketQua.add(kh);
+        }
+    }
+    tbBang.setItems(ketQua); // Cập nhật dữ liệu lọc
+}
+
+    
 
     private void showAlert(AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

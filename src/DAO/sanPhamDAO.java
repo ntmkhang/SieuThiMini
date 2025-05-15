@@ -254,7 +254,7 @@ public class sanPhamDAO {
             preparedStatement.setString(4, sPhamDTO.getHinhAnh());
             preparedStatement.setDouble(5, sPhamDTO.getGia());
             preparedStatement.setInt(6, sPhamDTO.getMaLoai());
-            preparedStatement.setBoolean(7, false);
+            preparedStatement.setInt(7, 1);
 
             return preparedStatement.executeUpdate() > 0;
         } catch (Exception e) {
@@ -353,4 +353,5 @@ public class sanPhamDAO {
 
         return null;
     }
+
 }

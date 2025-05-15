@@ -81,6 +81,5 @@ public class sanPhamBUS {
     public List<sanPhamDTO> getALL(){
         return sanPhamDAO.getAllList();
     }
-
 }
 

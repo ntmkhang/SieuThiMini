@@ -81,7 +81,7 @@
             </Label>
          </right>
          <bottom>
-                  <TextField fx:id="txtTimKiem" maxWidth="417.0" onAction="#handleSearchEnter" prefHeight="43.0" prefWidth="417.0" promptText="Tìm Kiếm Theo Số Điện Thoại" styleClass="shadow" stylesheets="@../../Assets/css/style.css" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="txtTimKiem" maxWidth="417.0" onKeyReleased="#Search" prefHeight="43.0" prefWidth="417.0" promptText="Tìm Kiếm Theo Số Điện Thoại" styleClass="shadow" stylesheets="@../../Assets/css/style.css" BorderPane.alignment="CENTER" />
          </bottom>
         </BorderPane>
     </top>
