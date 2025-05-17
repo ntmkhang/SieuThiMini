@@ -17,9 +17,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import BUS.LoginBUS;
 import BUS.PhieuNhapBUS;
-import DTO.nhanVienDTO;
 import DTO.PhieuNhapDTO;
+import DTO.nhanVienDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,6 +98,7 @@ public class PhieuNhapController implements Initializable {
     private PhieuNhapBUS pnBUS = new PhieuNhapBUS();
     private ObservableList<PhieuNhapDTO.tablePNDTO> dsTable;
     private nhanVienDTO nvLogin;
+    private LoginBUS loginBUS = new LoginBUS();
 
     public void setNV(nhanVienDTO nvLogin) {
         this.nvLogin = nvLogin;

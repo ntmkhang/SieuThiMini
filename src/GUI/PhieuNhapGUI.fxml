@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="904.0" style="-fx-background-color: #cfd6e6;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PhieuNhapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="810.0" style="-fx-background-color: #cfd6e6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PhieuNhapController">
    <children>
       <Pane layoutX="14.0" layoutY="10.0" prefHeight="64.0" prefWidth="400.0" style="-fx-border-color: #cfd6e6;" styleClass="shadow" stylesheets="@../../Assets/css/style.css">
          <children>
@@ -40,7 +40,7 @@
                      <children>
                         <ImageView fitHeight="50.0" fitWidth="90.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/Img/repairIcon.png" />
+                              <Image url="@../../Assets/img/icon1.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -110,7 +110,7 @@
          </children></Pane>
       <Pane layoutX="748.0" layoutY="10.0" prefHeight="64.0" prefWidth="135.0">
          <children>
-            <Pane layoutX="6.0" layoutY="-1.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #E87D7D; -fx-border-color: #56565DED;" styleClass="shadow" stylesheets="@../../Assets/css/style.css">
+            <Pane layoutX="-28.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #E87D7D; -fx-border-color: #56565DED;" styleClass="shadow" stylesheets="@../../Assets/css/style.css">
                <children>
                   <Label fx:id="btnNhap" alignment="CENTER" onMouseClicked="#btnNhapClicked" prefHeight="30.0" prefWidth="90.0" text="Tạo Phiếu">
                      <font>
@@ -127,14 +127,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane layoutX="6.0" layoutY="35.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #94CA97; -fx-border-color: #56565DED;" styleClass="shadow" stylesheets="@../../Assets/css/style.css">
+            <Pane layoutX="-28.0" layoutY="36.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #94CA97; -fx-border-color: #56565DED;" styleClass="shadow" stylesheets="@../../Assets/css/style.css">
                <children>
                   <Label fx:id="btnExcel" alignment="CENTER" onMouseClicked="#btnExcelCliked" prefHeight="30.0" prefWidth="90.0" text="Xuất Excel">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="91.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="1.0" layoutX="91.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Assets/Img/excelIcon.png" />
                      </image>
@@ -146,25 +146,25 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutY="82.0" prefHeight="48.0" prefWidth="904.0" style="-fx-background-color: #cfd6e6;">
+      <Pane layoutY="82.0" prefHeight="48.0" prefWidth="741.0" style="-fx-background-color: #cfd6e6;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" prefHeight="48.0" prefWidth="446.0" text="Quản Lý Phiếu Nhập">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" prefHeight="48.0" prefWidth="446.0" text="Quản Lý Phiếu Nhập">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="tablePN" layoutX="23.0" layoutY="188.0" prefHeight="622.0" prefWidth="858.0" stylesheets="@../../Assets/css/style.css">
+      <TableView fx:id="tablePN" layoutX="23.0" layoutY="208.0" prefHeight="339.0" prefWidth="769.0" stylesheets="@../../Assets/css/style.css">
          <columns>
             <TableColumn fx:id="colMaPN" prefWidth="75.0" sortable="false" style="-fx-alignment: center;" text="Mã PN" />
             <TableColumn fx:id="colDate" prefWidth="183.19998168945312" sortable="false" style="-fx-alignment: center;" text="Ngày Lập" />
             <TableColumn fx:id="colNhanVien" prefWidth="245.5999755859375" sortable="false" style="-fx-alignment: center;" text="Nhân Viên" />
-            <TableColumn fx:id="colNCC" prefWidth="248.0" sortable="false" style="-fx-alignment: center;" text="Nhà Cung Cấp" />
-            <TableColumn fx:id="colTrangThai" prefWidth="110.4000244140625" sortable="false" style="-fx-alignment: center;" text="Trạng Thái" />
+            <TableColumn fx:id="colNCC" prefWidth="146.66668701171875" sortable="false" style="-fx-alignment: center;" text="Nhà Cung Cấp" />
+            <TableColumn fx:id="colTrangThai" prefWidth="114.0" sortable="false" style="-fx-alignment: center;" text="Trạng Thái" />
          </columns>
       </TableView>
-      <Pane layoutX="172.0" layoutY="143.0" prefHeight="30.0" prefWidth="560.0" style="-fx-background-radius: 20px;" stylesheets="@../../Assets/css/style.css">
+      <Pane layoutX="125.0" layoutY="142.0" prefHeight="30.0" prefWidth="560.0" style="-fx-background-radius: 20px;" stylesheets="@../../Assets/css/style.css">
          <children>
             <TextField fx:id="txtSearch" layoutX="6.0" onKeyReleased="#searchReleased" prefHeight="30.0" prefWidth="515.0" promptText="Tìm kiếm theo nhà cung cấp ..." style="-fx-background-color: transparent;">
                <font>

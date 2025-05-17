@@ -8,11 +8,11 @@ import java.util.ResourceBundle;
 
 import BUS.NhaCungCapBUS;
 import BUS.PhieuNhapBUS;
-import DTO.PhieuNhapDTO;
-import DTO.sanPhamDTO;
 import DTO.CTPhieuNhapDTO;
 import DTO.NhaCungCapDTO;
+import DTO.PhieuNhapDTO;
 import DTO.nhanVienDTO;
+import DTO.sanPhamDTO;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -169,7 +169,7 @@ public class NhapHangController implements Initializable {
         if(keyWord.equals("Sửa")){
             thaotac = keyWord;
             txtMaPN.setText(String.valueOf(pn.getMaPN()));
-            txtNhanVien.setText(pn.getTenNV());
+            txtNhanVien.setText("admin");
             for(NhaCungCapDTO ncc : dsNCC){
                 if(pn.getTenNCC().equals(ncc.getTenNCC())){
                     cbbNCC.setValue(ncc);
@@ -183,7 +183,7 @@ public class NhapHangController implements Initializable {
             btnNhap.setStyle(btnNhap.getStyle() + "-fx-background-color: #6DCD8C");
         } else {
             txtMaPN.setText(String.valueOf(pnBUS.createCodeNCC()));
-            txtNhanVien.setText(nvLogin.getTenNV());
+            txtNhanVien.setText("admin");
         }
     }
 
@@ -281,7 +281,7 @@ public class NhapHangController implements Initializable {
                     PhieuNhapDTO pn = new PhieuNhapDTO();
                     pn.setMaPN(Integer.parseInt(txtMaPN.getText()));
                     pn.setNgayLap(new Timestamp(System.currentTimeMillis()));
-                    pn.setMaNV(nvLogin.getMaNV());
+                    pn.setMaNV(1);
                     pn.setMaNCC(cbbNCC.getSelectionModel().getSelectedItem().getMaNCC());
                     pn.setIs_Deleted(0);
                     alertMessage(pnBUS.ThemPN(pn));

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #F5F4E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLNVController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="810.0" style="-fx-background-color: #F5F4E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLNVController">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F4E8;" BorderPane.alignment="CENTER">
          <top>
@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Assets/Img/icons8-fix-90%201.png" />
+                        <Image url="@../../Assets/img/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -109,14 +109,6 @@
             <AnchorPane prefHeight="44.0" prefWidth="813.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="txtTimKiem" layoutX="168.0" layoutY="3.0" prefHeight="46.0" prefWidth="477.0" promptText="Tìm Kiếm Theo Tên Nhân Viên Hoặc Số Điện Thoại" styleClass="shadow" stylesheets="@../../Assets/css/style.css" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" />
-                  <ImageView fitHeight="33.0" fitWidth="73.0" layoutX="562.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.550724029541016" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="13.0">
-                     <image>
-                        <Image url="@../../Assets/Img/Rectangle%2043.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="590.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="17.0">
                      <image>
                         <Image url="@../../Assets/Img/Search.png" />
@@ -130,14 +122,14 @@
    <bottom>
       <TableView fx:id="tbBang" prefHeight="600.0" prefWidth="904.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="tbMANV" prefWidth="75.0" text="Mã NV" />
-          <TableColumn fx:id="tbTENNV" prefWidth="100.0" text="Họ Tên NV" />
+          <TableColumn fx:id="tbMANV" prefWidth="46.666656494140625" text="Mã NV" />
+          <TableColumn fx:id="tbTENNV" prefWidth="128.66668701171875" text="Họ Tên NV" />
             <TableColumn fx:id="tbGIOITINH" minWidth="0.0" prefWidth="57.0" text="Giới Tính" />
-            <TableColumn fx:id="tbNGAYSINH" prefWidth="94.0" text="Ngày Sinh" />
-            <TableColumn fx:id="tbSDT" prefWidth="86.0" text="SĐT" />
-            <TableColumn fx:id="tbEMAIL" prefWidth="100.0" text="Email" />
-            <TableColumn fx:id="tbDIACHI" prefWidth="100.0" text="Địa Chỉ" />
-            <TableColumn fx:id="tbCHUCVU" minWidth="0.0" prefWidth="100.0" text="Chức vụ" />
+            <TableColumn fx:id="tbNGAYSINH" prefWidth="106.66668701171875" text="Ngày Sinh" />
+            <TableColumn fx:id="tbSDT" prefWidth="93.3333740234375" text="SĐT" />
+            <TableColumn fx:id="tbEMAIL" prefWidth="121.33331298828125" text="Email" />
+            <TableColumn fx:id="tbDIACHI" prefWidth="178.66668701171875" text="Địa Chỉ" />
+            <TableColumn fx:id="tbCHUCVU" minWidth="0.0" prefWidth="76.0" text="Chức vụ" />
         </columns>
       </TableView>
    </bottom>

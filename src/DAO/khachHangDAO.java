@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import DTO.khachHangDTO;
 
 public class khachHangDAO {
@@ -264,5 +265,55 @@ public class khachHangDAO {
             connectManager.closeConnection();
         }
         return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //sua
+    public boolean suaKhachHang (khachHangDTO khachHang) {
+        String query ="UPDATE KhachHang SET TenKH = ?, SoDienThoai = ?, DiemTichLuy = ? WHERE MaKH = ?";
+        try {
+            connectManager.openConnection();
+            Connection connection = connectManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, khachHang.getTenKH());
+            preparedStatement.setString(2, khachHang.getSoDienThoai());
+            preparedStatement.setInt(3, khachHang.getMaKH());
+            int rowAffected = preparedStatement.executeUpdate();
+            return rowAffected >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

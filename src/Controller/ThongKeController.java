@@ -1,8 +1,5 @@
 package Controller;
 
-import DTO.DTO_ThongKe_ChiTieu;
-import DTO.DTO_ThongKe_DoanhThu;
-import DTO.DTO_ThongKe_LoiNhuan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +17,9 @@ import javafx.scene.layout.VBox;
 import java.time.LocalDate;
 
 import BUS.ThongKeBUS;
+import DTO.DTO_ThongKe_ChiTieu;
+import DTO.DTO_ThongKe_DoanhThu;
+import DTO.DTO_ThongKe_LoiNhuan;
 import javafx.scene.control.Alert;
 
 import java.sql.ResultSet;

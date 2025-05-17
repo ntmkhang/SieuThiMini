@@ -27,8 +27,6 @@ public class AdminPaneController {
     @FXML
     private Button adminDangXuatBTN;
     @FXML
-    private Button btnHome;
-    @FXML
     private Button btnQLSP;
     @FXML
     private Button btnQLPL;
@@ -59,10 +57,10 @@ public class AdminPaneController {
         buttonMap.put(btnQLSP, "QLSanPhamGUI.fxml");
         buttonMap.put(btnQLPL, "QLPhanLoaiGUI.fxml");
         buttonMap.put(btnQLNV, "QLNVGUI.fxml");
-        buttonMap.put(btnQLTK, "QLTKGUI.fxml");
+        buttonMap.put(btnQLTK, "AccountManage.fxml");
         buttonMap.put(btnQLKH, "QLKHGUI.fxml");
         buttonMap.put(btnQLHD, "QLHoaDonGUI.fxml");
-        buttonMap.put(btnQLPN, "NhapHang.fxml");
+        buttonMap.put(btnQLPN, "PhieuNhapGUI.fxml");
         buttonMap.put(btnTK, "ThongKeGui.fxml");
     }
 

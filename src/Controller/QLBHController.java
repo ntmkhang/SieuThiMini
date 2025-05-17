@@ -22,9 +22,8 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 
 import BUS.*;
-import DTO.*;
 import DAO.*;
-
+import DTO.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -315,7 +314,7 @@ public class QLBHController implements javafx.fxml.Initializable{
         //set up bảng sản phẩm trong giỏ hàng
         sellColProduct.setCellValueFactory(new PropertyValueFactory<>("tenSP"));
         sellColQuantity.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
-        sellColPrice.setCellValueFactory(new PropertyValueFactory<>("gia"));
+        sellColPrice.setCellValueFactory(new PropertyValueFactory<>("thanhTien"));
         
         sellTableView.setItems(sellItems);
 
@@ -424,98 +423,13 @@ public class QLBHController implements javafx.fxml.Initializable{
 
     @FXML
     public void handlleSearchLSHDBTN(ActionEvent event) {
-        String selected = sellSearchHoaDonCB.getValue();
-        int maKH = -1;
-        int maHD = -1;
-        String value = sellSearchHDBar.getText().trim();
-        if (selected!= null){
-            if (selected.equals("Mã hóa đơn")){
-                try {
-                    if(!value.isEmpty()){
-                        maHD = Integer.parseInt(value);
-                    }
-                } catch (NumberFormatException e) {
-                        maHD = -1;
-                }
-            }
-            if (selected.equals("Mã khách hàng")){
-                try {
-                    if(!value.isEmpty()){
-                        maKH = Integer.parseInt(value);
-                    }
-                } catch (NumberFormatException e) {
-                    maKH =-1;
-                }
-            }
-        }
-        java.sql.Date startDate = null;
-        java.sql.Date endDate = null;
-
-        if(startHDDatePicker.getValue() ==null && endHDDatePicker.getValue()!=null || 
-        startHDDatePicker.getValue() !=null && endHDDatePicker.getValue()==null){
-            showAlert(Alert.AlertType.WARNING,"Thiếu thông tin", "Vui lòng nhập đầy đủ thông tin");
-            return;
-        }
-
-        if (startHDDatePicker.getValue()!=null && endHDDatePicker.getValue()!=null && 
-        startHDDatePicker.getValue().isAfter(endHDDatePicker.getValue()) ) {
-            showAlert(Alert.AlertType.WARNING, "Không hợp lệ", "Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
-            return;
-        }
-
-        if(startHDDatePicker.getValue() !=null && endHDDatePicker.getValue() != null){
-            startDate = java.sql.Date.valueOf(startHDDatePicker.getValue());
-            endDate = java.sql.Date.valueOf(endHDDatePicker.getValue());
-        }
-
-        ArrayList<hoaDonDTO> result = hoaDonBUS.searchHoaDon(maHD, maKH, startDate, endDate);
+        ArrayList<hoaDonDTO> result = hoaDonBUS.searchHoaDonNC(sellSearchHDBar, sellSearchHoaDonCB, startHDDatePicker, endHDDatePicker);
         loadDataDanhSachHoaDon(result);
     }
 
     @FXML
     void handlleSearchLSTDBTN(ActionEvent event) {
-        int maKH = -1;
-        int maHD = -1;
-        String selected = sellSearchTichDiemCB.getValue();
-        String value = sellSearchLSBar.getText().trim();
-        if(selected!=null){
-            if (selected.equals("Mã hóa đơn")) {
-                try {    
-                    if(!value.isEmpty())
-                        maHD = Integer.parseInt(value);        
-                }
-                catch (NumberFormatException e) {
-                    maHD = -1;
-                } 
-            } if(selected.equals("Mã khách hàng")){
-                try {
-                    if(!value.isEmpty())
-                        maKH = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    maKH = -1;
-                }
-            }
-        }
-
-        java.sql.Date startDate = null;
-        java.sql.Date endDate = null;
-        if( endLSDatePicker.getValue()!=null && startLSDatePicker.getValue()== null ||
-            endLSDatePicker.getValue()==null && startLSDatePicker.getValue()!=null){
-            showAlert(Alert.AlertType.WARNING, "Thiếu thông tin", "Vui lòng nhập đầy đủ thông tin");
-            return;
-        }
-
-        if(startLSDatePicker.getValue() != null && endLSDatePicker.getValue() != null &&
-            startLSDatePicker.getValue().isAfter(endLSDatePicker.getValue())){
-            showAlert(Alert.AlertType.WARNING,"Không hợp lệ", "Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
-        }
-
-        if(startLSDatePicker.getValue() !=null && endLSDatePicker.getValue() != null){
-            startDate = java.sql.Date.valueOf(startLSDatePicker.getValue());
-            endDate = java.sql.Date.valueOf(endLSDatePicker.getValue());
-        }
-        
-        ArrayList<lichSuDiemDTO> result = lichSuDiemBUS.searchLichSuDiembyMaHD(maHD, maKH, startDate, endDate);
+        ArrayList<lichSuDiemDTO> result = lichSuDiemBUS.searchLichSuDiemNC(sellSearchLSBar, sellSearchTichDiemCB, startLSDatePicker, endLSDatePicker);
         loadDataLichSuDiem(result);
     }
 
@@ -607,73 +521,38 @@ public class QLBHController implements javafx.fxml.Initializable{
 
     @FXML
     void handleThanhToanBTN(ActionEvent event) {
-        if(sellHinhThucCB.getSelectionModel().isEmpty()){
+
+       if(sellHinhThucCB.getSelectionModel().isEmpty()){
             showAlert(Alert.AlertType.WARNING, "Chưa chọn hình thức", "Hãy chọn hình thức thanh toán.");
             return;
         }
-
-        java.util.Date today = new java.util.Date();
-        Date sqlDate = new Date(today.getTime());
-
-        //lấy dữ liệu từ các trường nhập liệu 
-        String soDienThoai = sellSoDienThoai.getText().trim();
-        int tongTien = (int) Double.parseDouble(sellTongTien.getText().replace(" VND", "").replace(",", ""));
         int thanhTien = (int) Double.parseDouble(sellThanhTien.getText().replace(" VND", "").replace(",", ""));
-        int tienGiam = (int) Double.parseDouble(sellTienGiam.getText().replace(" VND", "").replace(",", ""));
-        int tienTraLai = (int) Double.parseDouble(sellTienTraLai.getText().replace(" VND", "").replace(",", ""));
 
-        if (tongTien == 0 ){
-            showAlert(Alert.AlertType.WARNING, "Chưa chọn sản phẩm!", "Vui lòng chọn sản phẩm!");
-            return;
-        }
-
-        if (sellTienKhachTra.getText().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Chưa trả tiền!", "Vui lòng nhập tiền khách trả!");
-            return;
-        }
-
-        int tienKhachTra = (int) Double.parseDouble(sellTienKhachTra.getText().replace(" VND", "").replace(",", ""));
-
-        if (tienTraLai < 0) {
-            showAlert(Alert.AlertType.WARNING, "Chưa trả đủ!", "Khách hàng chưa trả đủ tiền!");
-            return;
-        }
+        String soDienThoai = sellSoDienThoai.getText().trim();
 
         int maKH = 0; // Mặc định mã khách hàng là 0 nếu không có số điện thoại
         if (!soDienThoai.isEmpty()) {
             maKH = khachHangBUS.getMaKHbySoDienThoai(soDienThoai);
         }
+        int maNV = Integer.parseInt(sellMaNV.getText().trim());
 
-        hoaDonDTO hoadon = new hoaDonDTO();
-        hoadon.setNgayLap(sqlDate);
-        hoadon.setHinhThuc(sellHinhThucCB.getSelectionModel().getSelectedItem());
-        hoadon.setThanhTien(thanhTien);
-        hoadon.setTienGiam(tienGiam);
-        hoadon.setTienKhachDua(tienKhachTra);
-        hoadon.setTienTraLai(tienTraLai);
-        hoadon.setTongTien(tongTien);
-        hoadon.setMaNV(Integer.parseInt(sellMaNV.getText().trim()));
-        hoadon.setMaKH(maKH);
-        
+        int maHD = hoaDonBUS.addHoaDonNC(sellHinhThucCB, sellTongTien, sellThanhTien, sellTienGiam, sellTienTraLai, sellTienKhachTra, maNV, maKH);
+        if (maHD == 0) {
+            return;
+        }
         String check = sellDiemApDung.getText().trim();
         int diemTru =0;
         
         if(!check.isEmpty()){
             diemTru = Integer.parseInt(sellDiemApDung.getText().trim());
         }
-        int maHD = hoaDonBUS.addHoaDon(hoadon);
+        //int maHD = hoaDonBUS.addHoaDon(hoadon);
         System.out.println("maHD " + maHD);
         khachHangBUS.subtractDiemTichLuy(maKH, diemTru);
         lastHoaDon = maHD;
         
         for (sanPhamDTO sanPhamDTO : sellItems) {
-            CThoaDonDTO cthd = new CThoaDonDTO();
-            cthd.setMaHD(maHD);
-            cthd.setMaSP(sanPhamDTO.getMaSP());
-            cthd.setSoLuong(sanPhamDTO.getSoLuong());
-            cthd.setGiaBan(sanPhamDTO.getGia());
-            cthd.setThanhTien(sanPhamDTO.getGia()*sanPhamDTO.getSoLuong());
-            hoaDonBUS.addCThoaDon(cthd);
+            hoaDonBUS.addCThoaDonNC(sanPhamDTO, maHD);
             boolean result = sanPhamBUS.capNhatSoLuongSanPham(sanPhamDTO.getMaSP(), sanPhamDTO.getSoLuong());
 
             if(!result){
@@ -681,24 +560,14 @@ public class QLBHController implements javafx.fxml.Initializable{
                 return; // Dừng lại nếu không trừ được sản phẩm
             }
         }
-
         int diemTichLuy = thanhTien/100;
         if (diemTichLuy >0 && !soDienThoai.isEmpty()){
-            lichSuDiemDTO lichSuDiem = new lichSuDiemDTO();
-            lichSuDiem.setMaHD(maHD);
-            lichSuDiem.setMaKH(maKH);
-            lichSuDiem.setLoaiGD(sellHinhThucCB.getSelectionModel().getSelectedItem());
-            lichSuDiem.setDiem(diemTichLuy);
-            lichSuDiem.setNgayTichLuy(sqlDate);
-
-            lichSuDiemBUS.addLichSuDiem(lichSuDiem);
+            lichSuDiemBUS.addLichSuDiem(sellHinhThucCB, sellThanhTien, maHD, maKH);
             khachHangBUS.updateDiemTichLuy(maKH, diemTichLuy, soDienThoai);
         }
 
         showAlert(Alert.AlertType.INFORMATION, "Thông báo", "Thanh toán thành công!");
-
         resetData();
-
     }
 
     @FXML
@@ -763,7 +632,7 @@ public class QLBHController implements javafx.fxml.Initializable{
     public void addSanPhamToTable (sanPhamDTO sanPham, int soLuong){
         int tongTien = sanPham.getGia()*soLuong;
         sanPham.setSoLuong(soLuong);
-        sanPham.setGia(tongTien);
+        sanPham.setThanhTien(tongTien);
 
         sellItems.add(sanPham);
     }
@@ -785,7 +654,7 @@ public class QLBHController implements javafx.fxml.Initializable{
             if (item.getMaSP() == currentProduct.getMaSP()) {
                 // Cập nhật số lượng và tổng giá
                 item.setSoLuong(item.getSoLuong() + soLuong);
-                item.setGia(item.getGia() + (currentProduct.getGia() * soLuong));
+                item.setThanhTien(item.getGia() * item.getSoLuong());
                 updateTongTien();
                 sellTableView.refresh();
                 isUpdated = true;
@@ -831,7 +700,7 @@ public class QLBHController implements javafx.fxml.Initializable{
     public void updateTongTien (){
         int tongTien = 0;
         for (sanPhamDTO sanPhamDTO : sellItems) {
-            tongTien += sanPhamDTO.getGia();
+            tongTien += sanPhamDTO.getThanhTien();
         }
 
         sellTongTien.setText(String.format("%,d VND", tongTien));

@@ -11,4 +11,5 @@ public class TaiKhoanDTO {
 
     public int getMaTK() { return maTK; }
     public String getTenTK() { return tenTK; }
+    
 }

@@ -78,17 +78,25 @@ public class sanPhamDTO {
     public String getHinhAnh() {
         return hinhAnh;
     }
+
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
+
     public int getIsDeleted() {
         return isDeleted;
     }
+
     public void setIsDeleted(int isDeleted) {
         this.isDeleted = isDeleted;
     }
 
-   // public int getThanhTien() { return thanhTien; }
+    public void setThanhTien (int thanhTien){
+        this.thanhTien = thanhTien;
+    }
 
+    public int getThanhTien (){
+        return thanhTien;
+    }
     
 }

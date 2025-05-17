@@ -97,7 +97,11 @@ public class CardProductController {
         }
 
         if(currentProduct != null && qlbhController!=null){
-            qlbhController.addSanPhamToTable(new sanPhamDTO(
+            if (qlbhController.isProductExist(currentProduct)) {
+            // Nếu sản phẩm đã có, chỉ cần cập nhật số lượng
+            qlbhController.updateProductInTable(currentProduct, soLuong);
+            } else{
+                qlbhController.addSanPhamToTable(new sanPhamDTO(
                 currentProduct.getMaSP(),
                 currentProduct.getTenSP(),
                 currentProduct.getMaLoai(),
@@ -109,6 +113,7 @@ public class CardProductController {
             );
             }
         }
+    }
 
     
 

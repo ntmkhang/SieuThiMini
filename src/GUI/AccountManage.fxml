@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="832.0" prefWidth="904.0" style="-fx-background-color: #F5F4E8;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLTKcontroller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="810.0" style="-fx-background-color: #F5F4E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QLTKcontroller">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F4E8;" BorderPane.alignment="CENTER">
          <top>
@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Assets/Img/icons8-fix-90%201.png" />
+                        <Image url="@../../Assets/img/icon1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -109,33 +109,20 @@
             <AnchorPane prefHeight="44.0" prefWidth="813.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="txtTimKiem" layoutX="168.0" layoutY="3.0" onKeyReleased="#Search" prefHeight="46.0" prefWidth="477.0" promptText="Tìm kiếm theo Mã TK hoặc Tên TK" styleClass="shadow" stylesheets="@../../Assets/css/style.css" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" />
-                  <ImageView fitHeight="33.0" fitWidth="73.0" layoutX="562.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.550724029541016" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="13.0">
-                     <image>
-                        <Image url="@../../Assets/Img/Rectangle%2043.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="18.0" layoutX="590.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="17.0">
-                     <image>
-                        <Image url="@../../Assets/Img/Search.png" />
-                     </image>
-                  </ImageView>
                </children>
             </AnchorPane>
          </bottom>
       </BorderPane>
    </top>
    <bottom>
-      <TableView fx:id="tbBang" prefHeight="605.0" prefWidth="904.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tbBang" prefHeight="357.0" prefWidth="811.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="tbMATK" prefWidth="88.80001831054688" text="Mã TK" />
-            <TableColumn fx:id="tbTENTK" prefWidth="213.60000610351562" text="Tên TK" />
-            <TableColumn fx:id="tbMATKHAU" minWidth="0.0" prefWidth="208.0" text="Mật Khẩu" />
-            <TableColumn fx:id="tbMANV" minWidth="0.0" prefWidth="138.4000244140625" text="Mã NV" />
-            <TableColumn fx:id="tbMAQUYEN" prefWidth="128.0" text="Mã Quyền" />
-            <TableColumn fx:id="tbTRANGTHAI" prefWidth="130.4000244140625" text="Trạng Thái" />
+            <TableColumn fx:id="tbMATK" prefWidth="50.66668701171875" text="Mã TK" />
+            <TableColumn fx:id="tbTENTK" prefWidth="237.33334350585938" text="Tên TK" />
+            <TableColumn fx:id="tbMATKHAU" minWidth="0.0" prefWidth="208.66668701171875" text="Mật Khẩu" />
+            <TableColumn fx:id="tbMANV" minWidth="0.0" prefWidth="55.99993896484375" text="Mã NV" />
+            <TableColumn fx:id="tbMAQUYEN" prefWidth="72.66668701171875" text="Mã Quyền" />
+            <TableColumn fx:id="tbTRANGTHAI" prefWidth="185.33349609375" text="Trạng Thái" />
          </columns>
       </TableView>
    </bottom>

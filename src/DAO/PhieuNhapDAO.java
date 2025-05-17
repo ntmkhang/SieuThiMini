@@ -1,11 +1,11 @@
 package DAO;
 
-import DTO.CTPhieuNhapDTO;
 import java.sql.*;
+import java.util.ArrayList;
 
+import DTO.CTPhieuNhapDTO;
 import DTO.PhieuNhapDTO;
 import DTO.sanPhamDTO;
-import java.util.ArrayList;
 
 public class PhieuNhapDAO {
     private ConnectManager connectManager;
@@ -16,17 +16,15 @@ public class PhieuNhapDAO {
 
     public boolean ThemPN(PhieuNhapDTO phieunhap){
         boolean check = false;
-        String query = "Insert INTO PhieuNhap (MaPN, NgayLap, MaNV, MaNCC, TrangThai, Is_Deleted) Value(?,?,?,?,?,?)";
+        String query = "Insert INTO PhieuNhap ( NgayLap, MaNV, MaNCC, TrangThai, Is_Deleted) Values (?,?,?,?,0)";
         try {
             connectManager.openConnection();
             Connection connection = connectManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(1, phieunhap.getMaPN());
-            stmt.setTimestamp(2, phieunhap.getNgayLap());
-            stmt.setInt(3, phieunhap.getMaNV());
-            stmt.setInt(4, phieunhap.getMaNCC());
-            stmt.setString(5, phieunhap.getTrangThai());
-            stmt.setInt(6, phieunhap.getIs_Deleted());
+            stmt.setTimestamp(1, phieunhap.getNgayLap());
+            stmt.setInt(2, phieunhap.getMaNV());
+            stmt.setInt(3, phieunhap.getMaNCC());
+            stmt.setString(4, phieunhap.getTrangThai());
             if(stmt.executeUpdate() >= 1){
                 check = true;
             }
@@ -41,7 +39,7 @@ public class PhieuNhapDAO {
 
     public boolean ThemCTPN(CTPhieuNhapDTO ctpn){
         boolean check = false;
-        String query = "Insert INTO CTPhieuNhap (MaPN, MaSP, SoLuong,Gianhap) Value (?, ?, ?, ?)";
+        String query = "Insert INTO CTPhieuNhap (MaPN, MaSP, SoLuong, Gianhap) Values (?, ?, ?, ?)";
         try {
             connectManager.openConnection();
             Connection connection = connectManager.getConnection();
